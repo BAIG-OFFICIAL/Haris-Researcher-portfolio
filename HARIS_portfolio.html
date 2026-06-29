@@ -1,0 +1,1625 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>HARIS | Biomedical Researcher &amp; Stem Cell Scientist</title>
+<meta content="Muhammad Haris Baig - Biomedical Researcher at Kwon's Stem Cell Lab, Soonchunhyang University South Korea. 12+ publications. Gold Medalist. 5 International Scholarships." name="description"/>
+<meta content="Muhammad Haris Baig" name="author"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&amp;family=DM+Sans:wght@300;400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<style>
+/* ─────────────────────────────────────────────
+   DESIGN TOKENS - Bioluminescent Deep Sea
+   Palette: midnight navy / deep teal / phosphor emerald
+   Type: Playfair Display (display) + DM Sans (body) + JetBrains Mono (data)
+   Signature: Animated SVG hex-cell mesh background
+───────────────────────────────────────────── */
+:root {
+  /* Dark theme (default) */
+  --bg:       #080C14;
+  --bg2:      #0D1520;
+  --bg3:      #111B2A;
+  --surface:  rgba(13,21,32,0.75);
+  --surf-b:   rgba(255,255,255,0.06);
+  --accent:   #00D4A0;   /* phosphor emerald */
+  --accent2:  #00A8D4;   /* bioluminescent teal */
+  --gold:     #D4A851;   /* warm gold for awards */
+  --grad:     linear-gradient(135deg, #00D4A0 0%, #00A8D4 100%);
+  --grad-rev: linear-gradient(135deg, #00A8D4 0%, #00D4A0 100%);
+  --text:     #E8F0EC;
+  --text2:    #8BA39A;
+  --text3:    #4A6358;
+  --border:   rgba(0,212,160,0.12);
+  --border2:  rgba(0,212,160,0.22);
+  --glow:     0 0 32px rgba(0,212,160,0.15);
+  --font-d:   'Playfair Display', serif;
+  --font-b:   'DM Sans', sans-serif;
+  --font-m:   'JetBrains Mono', monospace;
+  --r:        14px;
+  --r-sm:     8px;
+}
+
+/* LIGHT THEME */
+body.light {
+  --bg:      #F4F7F5;
+  --bg2:     #EBF2EE;
+  --bg3:     #FFFFFF;
+  --surface: rgba(255,255,255,0.85);
+  --surf-b:  rgba(0,0,0,0.06);
+  --accent:  #00956F;
+  --accent2: #0082A8;
+  --gold:    #B8870A;
+  --grad:    linear-gradient(135deg, #00956F 0%, #0082A8 100%);
+  --grad-rev:linear-gradient(135deg, #0082A8 0%, #00956F 100%);
+  --text:    #0A1A12;
+  --text2:   #3D6050;
+  --text3:   #7A9E8E;
+  --border:  rgba(0,149,111,0.15);
+  --border2: rgba(0,149,111,0.30);
+  --glow:    0 8px 32px rgba(0,149,111,0.12);
+  --surf-b:  rgba(0,0,0,0.05);
+}
+body.light nav { background: rgba(244,247,245,0.95); }
+body.light .mobile-nav { background: rgba(244,247,245,0.99); }
+body.light #loader { background: #F4F7F5; }
+body.light .hex-canvas { opacity: 0.12; }
+
+/* RESET */
+*,*::before,*::after { box-sizing:border-box; margin:0; padding:0; }
+html { scroll-behavior:smooth; font-size:16px; }
+body { background:var(--bg); color:var(--text); font-family:var(--font-b); line-height:1.65; overflow-x:hidden; cursor:none; transition:background 0.4s, color 0.4s; }
+
+/* ── CURSOR ── */
+#cur { position:fixed; width:8px; height:8px; background:var(--accent); border-radius:50%; pointer-events:none; z-index:9999; transform:translate(-50%,-50%); mix-blend-mode:screen; }
+#cur-r { position:fixed; width:32px; height:32px; border:1.5px solid rgba(0,212,160,0.5); border-radius:50%; pointer-events:none; z-index:9998; transform:translate(-50%,-50%); transition:width .2s,height .2s; }
+body.light #cur { mix-blend-mode:multiply; }
+
+/* ── SCROLL BAR ── */
+#scroll-prog { position:fixed; top:0; left:0; height:2px; background:var(--grad); z-index:1001; }
+
+/* ── LOADER ── */
+#loader { position:fixed; inset:0; background:var(--bg); z-index:9990; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:1.5rem; transition:opacity .6s,visibility .6s; }
+#loader.hide { opacity:0; visibility:hidden; }
+.loader-dna { display:flex; gap:6px; align-items:center; }
+.dna-dot { width:10px; height:10px; border-radius:50%; background:var(--grad); animation:dna-wave 1.1s ease-in-out infinite; }
+.dna-dot:nth-child(2){animation-delay:.15s} .dna-dot:nth-child(3){animation-delay:.3s} .dna-dot:nth-child(4){animation-delay:.45s} .dna-dot:nth-child(5){animation-delay:.6s}
+@keyframes dna-wave { 0%,100%{transform:translateY(0);opacity:.4} 50%{transform:translateY(-14px);opacity:1} }
+#load-pct { font-family:var(--font-m); font-size:2.2rem; font-weight:500; background:var(--grad); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
+#load-lbl { font-size:.78rem; color:var(--text3); letter-spacing:.2em; text-transform:uppercase; }
+
+/* ── HEX BACKGROUND (signature element) ── */
+.hex-canvas { position:fixed; inset:0; z-index:0; pointer-events:none; opacity:.22; }
+body.light .hex-canvas { opacity:.08; }
+
+/* ── NAV ── */
+nav { position:fixed; top:0; left:0; right:0; z-index:500; padding:.9rem 2rem; display:flex; align-items:center; justify-content:space-between; background:rgba(8,12,20,.88); backdrop-filter:blur(20px); border-bottom:1px solid var(--border); transition:all .3s; }
+body.light nav { background:rgba(244,247,245,.92); }
+.nav-brand { font-family:var(--font-d); font-size:1.05rem; font-weight:600; background:var(--grad); -webkit-background-clip:text; -webkit-text-fill-color:transparent; text-decoration:none; letter-spacing:.01em; }
+.nav-links { display:flex; gap:1.75rem; list-style:none; }
+.nav-links a { color:var(--text2); text-decoration:none; font-size:.82rem; font-weight:500; letter-spacing:.02em; transition:color .2s; }
+.nav-links a:hover { color:var(--accent); }
+.nav-right { display:flex; align-items:center; gap:.5rem; }
+.nav-btn { display:flex; align-items:center; gap:.35rem; background:var(--surface); border:1px solid var(--border); border-radius:var(--r-sm); padding:.38rem .75rem; color:var(--text2); font-size:.78rem; font-family:var(--font-b); font-weight:500; cursor:pointer; transition:all .2s; white-space:nowrap; }
+.nav-btn:hover,.nav-btn.active { border-color:var(--accent); color:var(--accent); background:rgba(0,212,160,.07); }
+.lang-select{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-sm);padding:.42rem .75rem;color:var(--text2);font-size:.78rem;font-family:var(--font-b);font-weight:600;outline:none;cursor:pointer;min-width:118px;}
+.lang-select:focus{border-color:var(--accent);color:var(--accent);}
+.lang-select option{background:var(--bg2);color:var(--text);}
+
+.hamburger { display:none; flex-direction:column; gap:5px; cursor:pointer; background:none; border:none; padding:4px; }
+.hamburger span { display:block; width:22px; height:2px; background:var(--text); border-radius:2px; transition:all .3s; }
+
+/* ── MENU DROPDOWN ── */
+.menu-wrap { position:relative; }
+.menu-drop { display:none; position:absolute; top:calc(100% + 10px); right:0; background:var(--bg2); border:1px solid var(--border); border-radius:var(--r); padding:.5rem; min-width:190px; z-index:600; box-shadow:0 16px 48px rgba(0,0,0,.45); backdrop-filter:blur(20px); }
+.menu-drop.open { display:block; animation:fadeDown .18s ease; }
+@keyframes fadeDown { from{opacity:0;transform:translateY(-8px)} to{opacity:1;transform:translateY(0)} }
+.menu-drop a { display:flex; align-items:center; gap:.55rem; padding:.55rem .85rem; border-radius:var(--r-sm); color:var(--text2); text-decoration:none; font-size:.82rem; font-weight:500; transition:all .15s; }
+.menu-drop a:hover { background:rgba(0,212,160,.08); color:var(--accent); }
+.menu-drop a .mi { font-size:.9rem; width:18px; text-align:center; }
+.mdivider { height:1px; background:var(--border); margin:.35rem .5rem; }
+
+/* ── MOBILE NAV ── */
+.mobile-nav { display:none; position:fixed; inset:0; background:rgba(8,12,20,.99); backdrop-filter:blur(24px); z-index:490; flex-direction:column; align-items:center; justify-content:center; gap:1.75rem; }
+.mobile-nav.open { display:flex; }
+.mobile-nav a { font-family:var(--font-d); font-size:1.6rem; color:var(--text); text-decoration:none; font-weight:600; transition:color .2s; }
+.mobile-nav a:hover { color:var(--accent); }
+.mobile-nav-close { position:absolute; top:1.5rem; right:1.5rem; background:none; border:none; color:var(--text2); font-size:1.5rem; cursor:pointer; }
+
+/* ── LAYOUT ── */
+section { padding:5.5rem 2rem; max-width:1180px; margin:0 auto; position:relative; z-index:2; }
+.section-eyebrow { font-family:var(--font-m); font-size:.72rem; color:var(--accent); letter-spacing:.22em; text-transform:uppercase; margin-bottom:.75rem; display:flex; align-items:center; gap:.6rem; opacity:0; transform:translateY(12px); transition:opacity .6s,transform .6s; }
+.section-eyebrow::after { content:''; flex:1; height:1px; background:linear-gradient(to right,var(--border2),transparent); max-width:80px; }
+.section-eyebrow.vis { opacity:1; transform:translateY(0); }
+.section-title { font-family:var(--font-d); font-size:clamp(2rem,4vw,2.8rem); font-weight:700; line-height:1.15; margin-bottom:1rem; letter-spacing:-.01em; }
+.section-sub { color:var(--text2); font-size:.97rem; max-width:540px; margin-bottom:3rem; line-height:1.7; }
+.divider { max-width:1180px; margin:0 auto; height:1px; background:linear-gradient(to right,transparent,var(--border),transparent); }
+
+/* ── FADE ANIMATION ── */
+.fade { opacity:0; transform:translateY(22px); transition:opacity .65s ease,transform .65s ease; }
+.fade.vis { opacity:1; transform:translateY(0); }
+.fade-l { opacity:0; transform:translateX(-22px); transition:opacity .6s ease,transform .6s ease; }
+.fade-l.vis { opacity:1; transform:translateX(0); }
+
+/* ═══════════════════════════════════════
+   HERO
+═══════════════════════════════════════ */
+#hero { min-height:100vh; display:flex; align-items:center; padding-top:5rem; padding-bottom:3rem; }
+.hero-grid { display:grid; grid-template-columns:1fr 1fr; gap:3.5rem; align-items:stretch; width:100%; }
+
+/* ── LEFT COLUMN ── */
+.hero-left {
+  display:flex; flex-direction:column; align-items:center; gap:0;
+  background:linear-gradient(160deg, rgba(255,255,255,.045), rgba(0,212,160,.03));
+  border:1px solid var(--border);
+  border-radius:22px;
+  padding:2.2rem 1.8rem 2rem;
+  backdrop-filter:blur(16px);
+  box-shadow:0 24px 60px rgba(0,0,0,.22), inset 0 1px 0 rgba(255,255,255,.08);
+  position:relative; overflow:hidden;
+}
+.hero-left::before {
+  content:''; position:absolute; top:0; left:0; right:0; height:3px;
+  background:var(--grad); border-radius:22px 22px 0 0;
+}
+
+/* Portrait */
+.portrait-wrap { position:relative; width:168px; height:168px; animation:float 8s ease-in-out infinite; flex-shrink:0; margin-bottom:1.5rem; }
+@keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)} }
+.portrait-ring { position:absolute; inset:0; border-radius:50%; background:conic-gradient(from 0deg, var(--accent), var(--accent2), transparent 60%, var(--accent)); animation:spin 8s linear infinite; }
+.portrait-inner { position:absolute; inset:3px; border-radius:50%; background:var(--bg2); overflow:hidden; }
+.portrait-inner img { width:100%; height:100%; object-fit:cover; object-position:center top; }
+.portrait-badge { position:absolute; bottom:-8px; right:-18px; background:var(--bg2); border:1px solid var(--border2); border-radius:10px; padding:.45rem .75rem; font-size:.65rem; color:var(--text2); line-height:1.5; backdrop-filter:blur(12px); box-shadow:0 6px 20px rgba(0,0,0,.35); white-space:nowrap; }
+.live-dot { width:7px; height:7px; border-radius:50%; background:#00D4A0; display:inline-block; margin-right:5px; animation:pulse-dot 2s infinite; }
+@keyframes pulse-dot { 0%,100%{box-shadow:0 0 0 0 rgba(0,212,160,.5)} 50%{box-shadow:0 0 0 6px rgba(0,212,160,0)} }
+@keyframes spin { to{transform:rotate(360deg)} }
+
+/* Hero left identity block */
+.hero-identity { text-align:center; width:100%; margin-bottom:1.6rem; }
+.hero-identity-role { font-family:var(--font-m); font-size:.68rem; color:var(--accent2); letter-spacing:.2em; text-transform:uppercase; margin-bottom:.55rem; }
+.hero-identity-name { font-family:var(--font-d); font-size:2rem; font-weight:700; letter-spacing:-.01em; line-height:1.1; margin-bottom:.75rem; }
+.hero-identity-name .name-grad { background:var(--grad); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
+.hero-identity-divider { width:48px; height:2px; background:var(--grad); border-radius:2px; margin:0 auto .75rem; }
+.hero-identity-desc { font-size:.83rem; color:var(--text2); line-height:1.72; }
+
+/* Hero stats */
+.hero-stats { display:flex; gap:.5rem; width:100%; margin-top:auto; padding-top:1.4rem; border-top:1px solid var(--border); }
+.stat-c { flex:1; background:rgba(0,212,160,.05); border:1px solid var(--border); border-radius:10px; padding:.7rem .35rem; text-align:center; transition:border-color .25s,transform .25s,background .25s; }
+.stat-c:hover { border-color:var(--border2); transform:translateY(-2px); background:rgba(0,212,160,.1); }
+.stat-n { font-family:var(--font-m); font-size:1.28rem; font-weight:700; background:var(--grad); -webkit-background-clip:text; -webkit-text-fill-color:transparent; display:block; line-height:1.1; }
+.stat-l { font-size:.58rem; color:var(--text3); text-transform:uppercase; letter-spacing:.09em; line-height:1.35; margin-top:.15rem; }
+
+/* ── RIGHT COLUMN ── */
+.hero-right { display:flex; flex-direction:column; justify-content:space-between; gap:0; }
+
+/* Scholarship Rail — outer card wrapper */
+.sch-rail {
+  flex:1;
+  display:flex; flex-direction:column;
+  background:linear-gradient(160deg, rgba(255,255,255,.045), rgba(0,212,160,.03));
+  border:1px solid rgba(212,168,81,.28);
+  border-radius:22px;
+  padding:1.8rem 1.8rem 1.6rem;
+  backdrop-filter:blur(16px);
+  box-shadow:0 24px 60px rgba(0,0,0,.22), inset 0 1px 0 rgba(255,255,255,.08);
+  position:relative; overflow:hidden;
+  opacity:0; animation:slideUp .7s ease .3s forwards;
+}
+.sch-rail::before {
+  content:''; position:absolute; top:0; left:0; right:0; height:3px;
+  background:linear-gradient(90deg,#D4A851,#00D4A0); border-radius:22px 22px 0 0;
+}
+.sch-rail::after {
+  content:''; position:absolute; top:-60px; right:-60px;
+  width:180px; height:180px; border-radius:50%;
+  background:radial-gradient(circle, rgba(212,168,81,.12), transparent 70%);
+  pointer-events:none;
+}
+
+/* Rail header */
+.sch-rail-head { display:flex; align-items:center; gap:.75rem; margin-bottom:1.2rem; padding-bottom:1rem; border-bottom:1px solid rgba(212,168,81,.18); }
+.sch-rail-medal { width:42px; height:42px; border-radius:13px; display:flex; align-items:center; justify-content:center; background:linear-gradient(145deg,rgba(212,168,81,.25),rgba(0,212,160,.1)); border:1px solid rgba(212,168,81,.4); font-size:1.2rem; flex-shrink:0; box-shadow:0 6px 16px rgba(212,168,81,.15); }
+.sch-rail-title { font-family:var(--font-d); font-size:1.08rem; font-weight:700; color:var(--text); line-height:1.2; }
+.sch-rail-sub { font-size:.72rem; color:var(--text2); margin-top:.1rem; }
+.sch-rail-badge { margin-left:auto; background:linear-gradient(135deg,#D4A851,#00D4A0); color:#06100D; font-family:var(--font-m); font-size:.64rem; font-weight:900; padding:.32rem .8rem; border-radius:999px; white-space:nowrap; flex-shrink:0; }
+
+/* Scholarship items */
+.sch-rail-list { display:flex; flex-direction:column; gap:.55rem; flex:1; margin-bottom:1.4rem; }
+.sch-rail-item {
+  display:flex; align-items:center; gap:.85rem;
+  padding:.75rem 1rem;
+  border-radius:13px;
+  background:rgba(255,255,255,.03);
+  border:1px solid rgba(255,255,255,.08);
+  transition:all .25s; position:relative; overflow:hidden;
+  cursor:default;
+}
+.sch-rail-item::after {
+  content:''; position:absolute; left:0; top:0; bottom:0; width:3px;
+  background:linear-gradient(to bottom, #D4A851, #00D4A0);
+  border-radius:3px 0 0 3px; opacity:0; transition:opacity .25s;
+}
+.sch-rail-item:hover { border-color:rgba(0,212,160,.3); background:rgba(0,212,160,.06); transform:translateX(5px); box-shadow:0 6px 22px rgba(0,212,160,.1); }
+.sch-rail-item:hover::after { opacity:1; }
+.sch-rail-num { font-family:var(--font-m); font-size:.6rem; color:var(--text3); width:18px; text-align:center; flex-shrink:0; font-weight:700; }
+.sch-rail-flag { font-size:1.45rem; flex-shrink:0; filter:drop-shadow(0 2px 5px rgba(0,0,0,.25)); }
+.sch-rail-info { flex:1; min-width:0; }
+.sch-rail-name { font-size:.86rem; font-weight:700; color:var(--text); line-height:1.25; }
+.sch-rail-country { font-size:.72rem; color:var(--text2); margin-top:.1rem; }
+.sch-rail-year { font-family:var(--font-m); font-size:.65rem; color:var(--accent); background:rgba(0,212,160,.1); border:1px solid rgba(0,212,160,.2); padding:.2rem .5rem; border-radius:6px; flex-shrink:0; font-weight:700; }
+
+/* Buttons row */
+.sch-rail-btns { display:flex; gap:.65rem; flex-wrap:wrap; padding-top:1.2rem; border-top:1px solid var(--border); }
+.hero-btns { display:flex; gap:.8rem; flex-wrap:wrap; opacity:0; animation:slideUp .6s ease .64s forwards; }
+
+/* animations */
+@keyframes slideUp { from{opacity:0;transform:translateY(18px)} to{opacity:1;transform:translateY(0)} }
+.hero-eyebrow { font-family:var(--font-m); font-size:.7rem; color:var(--accent2); letter-spacing:.22em; text-transform:uppercase; margin-bottom:.75rem; display:flex; align-items:center; gap:.65rem; opacity:0; animation:slideUp .6s ease .2s forwards; }
+.hero-eyebrow::before { content:''; width:24px; height:1px; background:var(--accent2); flex-shrink:0; }
+.hero-name { font-family:var(--font-d); font-size:clamp(2.6rem,4.5vw,3.7rem); font-weight:700; line-height:1.05; letter-spacing:-.02em; margin-bottom:.3rem; opacity:0; animation:slideUp .6s ease .32s forwards; }
+.name-1 { display:block; color:var(--text); }
+.name-2 { display:block; background:var(--grad); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
+.hero-typed-row { display:flex; align-items:center; gap:.7rem; margin-bottom:1.25rem; opacity:0; animation:slideUp .6s ease .44s forwards; }
+.hero-typed-row::after { content:''; flex:1; height:1px; background:linear-gradient(to right,var(--border2),transparent); }
+.hero-typed { font-family:var(--font-b); font-size:clamp(.88rem,1.6vw,1.05rem); color:var(--text2); font-weight:400; min-height:1.7rem; }
+.blink { display:inline-block; width:2px; height:.9em; background:var(--accent); vertical-align:middle; margin-left:2px; animation:blink .7s infinite; }
+@keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+.hero-desc { color:var(--text2); line-height:1.8; font-size:.92rem; margin-bottom:1.9rem; max-width:490px; opacity:0; animation:slideUp .6s ease .54s forwards; border-left:2px solid var(--accent); padding-left:1rem; }
+
+/* Scholarships mini-card (legacy — keep for other sections) */
+.sch-panel { width:100%; background:linear-gradient(135deg,rgba(0,212,160,.06),rgba(0,168,212,.04)); border:1px solid var(--border); border-radius:var(--r); padding:1rem 1.1rem; backdrop-filter:blur(16px); }
+.sch-head { display:flex; align-items:center; gap:.5rem; margin-bottom:.8rem; padding-bottom:.6rem; border-bottom:1px solid var(--border); }
+.sch-title { font-family:var(--font-b); font-size:.7rem; font-weight:600; color:var(--text); flex:1; }
+.sch-badge { background:var(--grad); color:#fff; font-size:.6rem; font-weight:700; font-family:var(--font-m); padding:.18rem .48rem; border-radius:20px; }
+.sch-list { display:flex; flex-direction:column; gap:.32rem; }
+.sch-item { display:flex; align-items:center; gap:.45rem; padding:.3rem .6rem; border-radius:6px; background:rgba(0,212,160,.04); border:1px solid rgba(0,212,160,.08); transition:background .2s; }
+.sch-item:hover { background:rgba(0,212,160,.1); }
+.s-n { font-size:.73rem; font-weight:600; color:var(--text); flex:1; }
+.s-y { font-family:var(--font-m); font-size:.62rem; color:var(--accent); background:rgba(0,212,160,.1); padding:.1rem .35rem; border-radius:4px; }
+
+/* ── BUTTONS ── */
+.btn-p { display:inline-flex; align-items:center; gap:.45rem; background:var(--grad); color:#fff; padding:.7rem 1.45rem; border-radius:var(--r-sm); font-weight:600; font-size:.85rem; text-decoration:none; border:none; cursor:pointer; transition:transform .2s,box-shadow .2s,filter .2s; letter-spacing:.01em; }
+.btn-p:hover { transform:translateY(-2px); box-shadow:0 8px 28px rgba(0,212,160,.35); filter:brightness(1.06); }
+.btn-o { display:inline-flex; align-items:center; gap:.45rem; border:1px solid var(--border2); color:var(--text); padding:.7rem 1.45rem; border-radius:var(--r-sm); font-weight:500; font-size:.85rem; text-decoration:none; background:var(--surface); backdrop-filter:blur(8px); transition:all .25s; cursor:pointer; }
+.btn-o:hover { border-color:var(--accent); color:var(--accent); transform:translateY(-2px); box-shadow:0 8px 24px rgba(0,212,160,.1); }
+
+/* ── CARDS ── */
+.card { background:var(--surface); border:1px solid var(--border); border-radius:var(--r); backdrop-filter:blur(10px); transition:border-color .25s,transform .25s,box-shadow .25s; }
+.card:hover { border-color:var(--border2); transform:translateY(-3px); box-shadow:var(--glow); }
+
+/* ═══════════════════════════════════════
+   ABOUT
+═══════════════════════════════════════ */
+.about-grid { display:grid; grid-template-columns:1.25fr .75fr; gap:4rem; align-items:start; }
+.about-text { padding:2rem; background:var(--surface); border:1px solid var(--surf-b); border-radius:20px; }
+.about-text p { color:var(--text2); margin-bottom:1.1rem; font-size:.96rem; line-height:1.78; }
+.about-text p:last-of-type { margin-bottom:0; }
+.about-text em { color:var(--accent); font-style:normal; font-weight:500; }
+.about-text a { color:var(--accent); text-decoration:none; font-weight:600; }
+.about-text a:hover { text-decoration:underline; }
+.chips { display:flex; flex-wrap:wrap; gap:.65rem; margin-top:1.4rem; }
+.chip { background:rgba(0,212,160,.08); border:1px solid rgba(0,212,160,.2); color:var(--accent); border-radius:20px; padding:.3rem .9rem; font-size:.76rem; font-weight:500; font-family:var(--font-m); transition:background .2s,transform .2s; }
+.chip:hover { background:rgba(0,212,160,.15); transform:translateY(-1px); }
+.about-facts { display:grid; gap:.9rem; }
+.fact { padding:1.1rem 1.2rem; background:var(--surface); border:1px solid var(--border); border-radius:14px; transition:border-color .2s; }
+.fact:hover { border-color:var(--border2); }
+.fact-l { font-size:.68rem; color:var(--text3); text-transform:uppercase; letter-spacing:.13em; margin-bottom:.3rem; font-family:var(--font-m); }
+.fact-v { font-size:.93rem; color:var(--text); font-weight:600; }
+
+/* ═══════════════════════════════════════
+   TIMELINE
+═══════════════════════════════════════ */
+.timeline { position:relative; padding-left:2rem; }
+.timeline::before { content:''; position:absolute; left:0; top:8px; bottom:8px; width:1px; background:linear-gradient(to bottom,var(--accent),var(--accent2),transparent); }
+.tl-item { position:relative; margin-bottom:2.25rem; opacity:0; transform:translateX(-18px); transition:opacity .55s ease,transform .55s ease; }
+.tl-item.vis { opacity:1; transform:translateX(0); }
+.tl-dot { position:absolute; left:-2.42rem; top:.3rem; width:13px; height:13px; border-radius:50%; background:var(--grad); border:2.5px solid var(--bg); box-shadow:0 0 10px rgba(0,212,160,.5); }
+.tl-date { font-family:var(--font-m); font-size:.72rem; color:var(--accent); margin-bottom:.35rem; letter-spacing:.05em; }
+.tl-title { font-family:var(--font-d); font-size:1.05rem; font-weight:600; margin-bottom:.18rem; }
+.tl-org { font-size:.86rem; color:var(--accent2); margin-bottom:.55rem; font-weight:500; }
+.tl-body { color:var(--text2); font-size:.86rem; line-height:1.65; }
+.tl-body ul { padding-left:.9rem; }
+.tl-body li { margin-bottom:.22rem; }
+
+/* ═══════════════════════════════════════
+   EXPERTISE CARDS
+═══════════════════════════════════════ */
+.exp-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1.25rem; }
+.exp-card { background:var(--surface); border:1px solid var(--border); border-radius:var(--r); padding:1.4rem; transition:all .25s; position:relative; overflow:hidden; }
+.exp-card::after { content:''; position:absolute; bottom:0; left:0; right:0; height:2px; background:var(--grad); transform:scaleX(0); transform-origin:left; transition:transform .3s ease; }
+.exp-card:hover { border-color:var(--border2); transform:translateY(-4px); box-shadow:var(--glow); }
+.exp-card:hover::after { transform:scaleX(1); }
+.exp-icon { font-size:1.65rem; margin-bottom:.7rem; }
+.exp-name { font-family:var(--font-b); font-size:.92rem; font-weight:600; margin-bottom:.38rem; color:var(--text); }
+.exp-desc { font-size:.79rem; color:var(--text2); line-height:1.55; }
+
+/* ═══════════════════════════════════════
+   SKILLS
+═══════════════════════════════════════ */
+.skills-grid { display:grid; grid-template-columns:1fr 1fr; gap:2.5rem; }
+.skill-group { margin-bottom:2rem; }
+.sg-title { font-family:var(--font-b); font-weight:600; font-size:.97rem; margin-bottom:1.1rem; color:var(--text); display:flex; align-items:center; gap:.45rem; }
+.sg-title::before { content:''; display:block; width:3px; height:.95rem; background:var(--grad); border-radius:2px; }
+.skill-row { display:flex; align-items:center; gap:.9rem; margin-bottom:.7rem; opacity:0; transform:translateY(10px); transition:opacity .55s,transform .55s; }
+.skill-row.vis { opacity:1; transform:translateY(0); }
+.sk-name { font-size:.82rem; color:var(--text2); width:175px; flex-shrink:0; }
+.sk-track { flex:1; height:4px; background:rgba(255,255,255,.06); border-radius:99px; overflow:hidden; }
+body.light .sk-track { background:rgba(0,0,0,.08); }
+.sk-bar { height:100%; background:var(--grad); border-radius:99px; width:0; transition:width 1.3s cubic-bezier(.16,1,.3,1); }
+.sk-pct { font-family:var(--font-m); font-size:.72rem; color:var(--text3); width:32px; text-align:right; }
+
+.skills-dashboard { display:grid; grid-template-columns:1fr 1fr; gap:1.25rem; align-items:start; }
+.skill-card { background:var(--surface); border:1px solid var(--border); border-radius:18px; padding:1.35rem; margin:0; box-shadow:0 12px 34px rgba(0,0,0,.14); }
+.language-card { grid-column:1 / -1; }
+.skill-row { display:flex; align-items:center; gap:.9rem; margin-bottom:.82rem; opacity:1; transform:none; transition:none; }
+.skill-row:last-child { margin-bottom:0; }
+.sk-name { width:210px; font-size:.84rem; color:var(--text2); flex-shrink:0; }
+.sk-track { flex:1; height:8px; background:rgba(255,255,255,.07); border-radius:99px; overflow:hidden; }
+.sk-bar { height:100%; background:var(--grad); border-radius:99px; width:0; transition:none; }
+.sk-pct { font-family:var(--font-m); font-size:.74rem; color:var(--text); width:42px; text-align:right; }
+@media (max-width:860px) { .skills-dashboard { grid-template-columns:1fr; } .language-card { grid-column:auto; } }
+@media (max-width:560px) { .skill-row { align-items:flex-start; gap:.55rem; } .sk-name { width:130px; } .sk-pct { width:38px; } }
+
+
+.compact-leadership { gap:.9rem; }
+.compact-leadership .lead-card { padding:1rem; }
+.compact-leadership .lead-icon { font-size:1.2rem; margin-bottom:.35rem; }
+.compact-leadership .lead-title { font-size:.9rem; margin-bottom:.2rem; }
+.compact-leadership .lead-org { font-size:.75rem; margin-bottom:.3rem; }
+.compact-leadership .lead-desc { font-size:.76rem; line-height:1.45; }
+.academic-connect-grid { grid-template-columns:repeat(5,1fr); gap:.75rem; }
+.academic-connect-grid .profile-card { padding:.95rem; }
+.academic-connect-grid .profile-icon { font-size:1.15rem; margin-bottom:.35rem; }
+.academic-connect-grid .profile-name { font-size:.86rem; }
+.academic-connect-grid .profile-sub { font-size:.72rem; min-height:2.1em; }
+.academic-connect-grid .profile-btn { margin-top:.65rem; padding:.38rem .55rem; font-size:.72rem; }
+@media (max-width:1000px) { .academic-connect-grid { grid-template-columns:repeat(3,1fr); } }
+@media (max-width:700px) { .academic-connect-grid { grid-template-columns:1fr 1fr; } }
+@media (max-width:460px) { .academic-connect-grid { grid-template-columns:1fr; } }
+
+/* ═══════════════════════════════════════
+   PUBLICATIONS
+═══════════════════════════════════════ */
+.pub-controls { display:flex; gap:.85rem; margin-bottom:1.75rem; flex-wrap:wrap; align-items:center; }
+.pub-search { flex:1; min-width:210px; background:var(--surface); border:1px solid var(--border); border-radius:var(--r-sm); padding:.6rem .95rem; color:var(--text); font-size:.86rem; font-family:var(--font-b); outline:none; transition:border-color .2s; }
+.pub-search:focus { border-color:var(--accent); }
+.ftag { background:var(--surface); border:1px solid var(--border); color:var(--text2); padding:.48rem .9rem; border-radius:var(--r-sm); font-size:.8rem; cursor:pointer; transition:all .2s; font-family:var(--font-b); }
+.ftag.active { background:rgba(0,212,160,.12); border-color:var(--accent); color:var(--accent); }
+.pub-card { background:var(--surface); border:1px solid var(--border); border-radius:var(--r); padding:1.5rem; margin-bottom:1.1rem; display:none; transition:all .25s; border-left:3px solid transparent; }
+.pub-card.show { display:block; }
+.pub-card:hover { border-left-color:var(--accent); transform:translateX(3px); box-shadow:var(--glow); }
+.pub-yr { font-family:var(--font-m); font-size:.68rem; background:rgba(0,212,160,.1); color:var(--accent); border-radius:5px; padding:.18rem .55rem; display:inline-block; margin-bottom:.55rem; letter-spacing:.08em; }
+.pub-title { font-family:var(--font-d); font-size:.97rem; font-weight:600; margin-bottom:.45rem; line-height:1.45; color:var(--text); }
+.pub-ref { font-size:.79rem; color:var(--text2); line-height:1.55; margin-bottom:.75rem; }
+.pub-ref a { color:var(--accent); text-decoration:none; }
+.pub-tags { display:flex; flex-wrap:wrap; gap:.35rem; margin-bottom:.75rem; }
+.pub-tag { font-size:.68rem; border-radius:20px; padding:.18rem .55rem; font-family:var(--font-m); border:1px solid; }
+.t-stem { background:rgba(0,212,160,.08); color:#00D4A0; border-color:rgba(0,212,160,.2); }
+.t-cancer { background:rgba(239,68,68,.08); color:#F87171; border-color:rgba(239,68,68,.2); }
+.t-nano { background:rgba(168,85,247,.08); color:#C084FC; border-color:rgba(168,85,247,.2); }
+.t-micro { background:rgba(34,197,94,.08); color:#4ADE80; border-color:rgba(34,197,94,.2); }
+.t-heme { background:rgba(251,191,36,.08); color:#FCD34D; border-color:rgba(251,191,36,.2); }
+.pub-actions { display:flex; gap:.65rem; flex-wrap:wrap; }
+.pub-btn { font-size:.76rem; padding:.32rem .85rem; border-radius:6px; border:1px solid var(--border); background:var(--surface); color:var(--text2); cursor:pointer; text-decoration:none; display:inline-flex; align-items:center; gap:.3rem; transition:all .2s; font-family:var(--font-b); }
+.pub-btn:hover { border-color:var(--accent); color:var(--accent); }
+.pub-btn.main { background:rgba(0,212,160,.1); color:var(--accent); border-color:rgba(0,212,160,.25); }
+
+/* ═══════════════════════════════════════
+   AWARDS
+═══════════════════════════════════════ */
+.award-card { display:flex; gap:1.1rem; padding:1.35rem; background:var(--surface); border:1px solid var(--border); border-radius:var(--r); transition:all .25s; }
+.award-card:hover { border-color:var(--border2); transform:translateY(-2px); box-shadow:var(--glow); }
+.award-icon { width:46px; height:46px; border-radius:10px; background:rgba(212,168,81,.1); border:1px solid rgba(212,168,81,.2); display:flex; align-items:center; justify-content:center; font-size:1.4rem; flex-shrink:0; }
+.award-body h3 { font-family:var(--font-d); font-size:.93rem; font-weight:600; margin-bottom:.28rem; }
+.award-body p { font-size:.8rem; color:var(--text2); line-height:1.55; }
+
+/* ═══════════════════════════════════════
+   CONFERENCES
+═══════════════════════════════════════ */
+.conf-grid { display:grid; grid-template-columns:1fr 1fr; gap:0; }
+.conf-item { display:flex; gap:.9rem; padding:.9rem 1.1rem; border-bottom:1px solid var(--border); align-items:flex-start; transition:background .2s; }
+.conf-item:hover { background:rgba(0,212,160,.03); }
+.conf-icon { width:34px; height:34px; border-radius:8px; background:rgba(0,168,212,.1); border:1px solid rgba(0,168,212,.15); display:flex; align-items:center; justify-content:center; font-size:.95rem; flex-shrink:0; margin-top:1px; }
+.conf-body h4 { font-size:.88rem; font-weight:600; margin-bottom:.18rem; color:var(--text); }
+.conf-body p { font-size:.76rem; color:var(--text3); }
+
+/* ═══════════════════════════════════════
+   LEADERSHIP
+═══════════════════════════════════════ */
+.lead-card { background:var(--surface); border:1px solid var(--border); border-radius:var(--r); padding:1.4rem; transition:all .25s; }
+.lead-card:hover { border-color:var(--border2); transform:translateY(-2px); box-shadow:var(--glow); }
+.lead-icon { font-size:1.5rem; margin-bottom:.65rem; }
+.lead-title { font-family:var(--font-d); font-size:.95rem; font-weight:600; margin-bottom:.3rem; }
+.lead-org { font-size:.8rem; color:var(--accent2); margin-bottom:.45rem; font-weight:500; }
+.lead-desc { font-size:.8rem; color:var(--text2); line-height:1.58; }
+
+/* ═══════════════════════════════════════
+   YOUTUBE
+═══════════════════════════════════════ */
+.yt-wrap { position:relative; padding-bottom:56.25%; border-radius:var(--r); overflow:hidden; border:1px solid var(--border); }
+.yt-wrap iframe { position:absolute; inset:0; width:100%; height:100%; }
+
+
+/* ═══════════════════════════════════════
+   YOUTUBE + CONNECT WITH HARIS
+═══════════════════════════════════════ */
+.youtube-connect-wrap { display:grid; grid-template-columns:1fr; gap:1.25rem; }
+.yt-feature-card { position:relative; overflow:hidden; background:linear-gradient(135deg,rgba(0,212,160,.08),rgba(0,168,212,.045)); border:1px solid var(--border); border-radius:20px; padding:1.7rem; box-shadow:0 18px 48px rgba(0,0,0,.22); }
+.yt-feature-card::before { content:''; position:absolute; top:-90px; right:-90px; width:220px; height:220px; border-radius:50%; background:radial-gradient(circle,rgba(0,212,160,.16),transparent 68%); pointer-events:none; }
+.yt-badge { display:inline-flex; align-items:center; gap:.45rem; padding:.32rem .75rem; border-radius:999px; border:1px solid rgba(0,212,160,.24); background:rgba(0,212,160,.08); color:var(--accent); font-family:var(--font-m); font-size:.68rem; letter-spacing:.08em; text-transform:uppercase; margin-bottom:.9rem; }
+.yt-feature-grid { display:grid; grid-template-columns:1.15fr .85fr; gap:1.25rem; align-items:center; position:relative; z-index:1; }
+.yt-main-title { font-family:var(--font-d); font-size:clamp(1.55rem,3vw,2.25rem); line-height:1.12; margin-bottom:.65rem; color:var(--text); }
+.yt-desc { color:var(--text2); font-size:.9rem; line-height:1.75; max-width:650px; margin-bottom:1.15rem; }
+.yt-actions { display:flex; gap:.75rem; flex-wrap:wrap; }
+.yt-visual { border:1px solid var(--border); border-radius:18px; min-height:220px; display:flex; align-items:center; justify-content:center; background:rgba(255,255,255,.025); }
+.yt-play { width:86px; height:86px; border-radius:50%; display:flex; align-items:center; justify-content:center; background:var(--grad); color:#fff; font-size:2.1rem; box-shadow:0 18px 44px rgba(0,212,160,.24); }
+.connect-panel { background:var(--surface); border:1px solid var(--border); border-radius:20px; padding:1.55rem; box-shadow:0 18px 48px rgba(0,0,0,.16); }
+.connect-head { display:flex; justify-content:space-between; gap:1rem; align-items:flex-end; margin-bottom:1.2rem; }
+.connect-title { font-family:var(--font-d); font-size:1.55rem; font-weight:700; line-height:1.15; color:var(--text); }
+.connect-sub { color:var(--text2); font-size:.88rem; line-height:1.65; max-width:560px; margin-top:.4rem; }
+.profile-grid { display:grid; grid-template-columns:repeat(5,1fr); gap:.85rem; }
+.profile-card { background:rgba(255,255,255,.025); border:1px solid var(--border); border-radius:16px; padding:1rem; display:flex; flex-direction:column; min-height:160px; }
+.profile-icon { width:38px; height:38px; border-radius:10px; display:flex; align-items:center; justify-content:center; background:rgba(0,212,160,.08); border:1px solid rgba(0,212,160,.16); margin-bottom:.75rem; }
+.profile-name { font-size:.92rem; font-weight:700; color:var(--text); margin-bottom:.22rem; }
+.profile-sub { color:var(--text3); font-size:.75rem; line-height:1.45; margin-bottom:1rem; flex:1; }
+.profile-btn { display:inline-flex; align-items:center; justify-content:center; text-decoration:none; border:1px solid var(--border2); color:var(--accent); border-radius:9px; padding:.42rem .65rem; font-size:.74rem; font-weight:600; }
+.profile-btn:hover { background:rgba(0,212,160,.08); }
+@media (max-width:1000px) { .yt-feature-grid { grid-template-columns:1fr; } .profile-grid { grid-template-columns:repeat(3,1fr); } .yt-visual { min-height:170px; } }
+@media (max-width:700px) { .connect-head { display:block; } .profile-grid { grid-template-columns:1fr; } .yt-feature-card,.connect-panel { padding:1.15rem; } .yt-actions { flex-direction:column; } .yt-actions a { justify-content:center; } }
+
+/* ═══════════════════════════════════════
+   CONTACT
+═══════════════════════════════════════ */
+.contact-grid { display:grid; grid-template-columns:1fr 1.35fr; gap:3rem; }
+.ci-item { display:flex; gap:.9rem; align-items:flex-start; margin-bottom:1.35rem; }
+.ci-icon { width:40px; height:40px; border-radius:9px; background:rgba(0,212,160,.08); border:1px solid rgba(0,212,160,.18); display:flex; align-items:center; justify-content:center; font-size:1rem; flex-shrink:0; }
+.ci-item h4 { font-size:.76rem; color:var(--text3); margin-bottom:.12rem; text-transform:uppercase; letter-spacing:.09em; }
+.ci-item a,.ci-item p { font-size:.88rem; color:var(--text); text-decoration:none; font-weight:500; }
+.ci-item a:hover { color:var(--accent); }
+.contact-form { display:flex; flex-direction:column; gap:.9rem; }
+.form-row { display:grid; grid-template-columns:1fr 1fr; gap:.9rem; }
+.ff { display:flex; flex-direction:column; gap:.38rem; }
+.ff label { font-size:.78rem; color:var(--text2); font-weight:500; }
+.ff input,.ff textarea { background:var(--surface); border:1px solid var(--border); border-radius:var(--r-sm); padding:.7rem .95rem; color:var(--text); font-size:.86rem; font-family:var(--font-b); outline:none; transition:border-color .2s; resize:none; }
+.ff input:focus,.ff textarea:focus { border-color:var(--accent); box-shadow:0 0 0 3px rgba(0,212,160,.08); }
+.social-row { display:flex; gap:.65rem; flex-wrap:wrap; margin-top:1.75rem; }
+.soc { width:38px; height:38px; border-radius:var(--r-sm); background:var(--surface); border:1px solid var(--border); display:flex; align-items:center; justify-content:center; text-decoration:none; font-size:1rem; color:var(--text2); transition:all .2s; }
+.soc:hover { border-color:var(--accent); color:var(--accent); transform:translateY(-2px); box-shadow:0 4px 12px rgba(0,212,160,.15); }
+
+/* ═══════════════════════════════════════
+   FOOTER
+═══════════════════════════════════════ */
+footer { background:var(--bg2); border-top:1px solid var(--border); padding:3rem 2rem 1.5rem; }
+.footer-inner { max-width:1180px; margin:0 auto; display:grid; grid-template-columns:2fr 1fr 1fr 1fr; gap:2.5rem; padding-bottom:2rem; border-bottom:1px solid var(--border); }
+.footer-brand p { font-size:.83rem; color:var(--text2); line-height:1.65; margin-top:.7rem; }
+.footer-brand .nav-brand { display:inline-block; }
+.footer-col h5 { font-size:.74rem; text-transform:uppercase; letter-spacing:.13em; color:var(--text3); margin-bottom:.9rem; }
+.footer-col a { display:block; font-size:.83rem; color:var(--text2); text-decoration:none; margin-bottom:.45rem; transition:color .2s; }
+.footer-col a:hover { color:var(--accent); }
+.footer-bottom { max-width:1180px; margin:.75rem auto 0; display:flex; justify-content:space-between; align-items:center; font-size:.76rem; color:var(--text3); padding-top:1.25rem; }
+
+/* BACK TO TOP */
+#btt { position:fixed; bottom:1.75rem; right:1.75rem; width:42px; height:42px; background:var(--grad); border:none; border-radius:10px; cursor:pointer; display:flex; align-items:center; justify-content:center; font-size:1.1rem; color:#fff; opacity:0; transform:translateY(16px); transition:opacity .3s,transform .3s; z-index:400; box-shadow:0 4px 16px rgba(0,212,160,.3); }
+#btt.show { opacity:1; transform:translateY(0); }
+#btt:hover { transform:translateY(-2px); }
+
+/* ═══════════════════════════════════════
+   GRIDS
+═══════════════════════════════════════ */
+.g2 { display:grid; grid-template-columns:1fr 1fr; gap:1.25rem; }
+.g3 { display:grid; grid-template-columns:repeat(3,1fr); gap:1.25rem; }
+.g4 { display:grid; grid-template-columns:repeat(4,1fr); gap:1.1rem; }
+.gcol { display:flex; flex-direction:column; gap:1.1rem; }
+
+/* ═══════════════════════════════════════
+   RESPONSIVE
+═══════════════════════════════════════ */
+@media (max-width:1000px) {
+  .hero-grid { grid-template-columns:1fr; gap:2rem; }
+  .hero-left { align-items:center; text-align:center; }
+  .hero-identity { text-align:center; }
+  .hero-right { width:100%; }
+  .sch-rail-head { flex-wrap:wrap; gap:.5rem; }
+  .portrait-wrap { width:180px; height:180px; }
+  .about-grid { grid-template-columns:1fr; }
+  .contact-grid { grid-template-columns:1fr; }
+  .conf-grid { grid-template-columns:1fr; }
+  .sch-rail-btns { justify-content:center; }
+}
+@media (max-width:860px) {
+  .nav-links { display:none; }
+  .hamburger { display:flex; }
+  section { padding:4rem 1.25rem; }
+  .exp-grid { grid-template-columns:1fr 1fr; }
+  .g2 { grid-template-columns:1fr; }
+  .g3 { grid-template-columns:1fr 1fr; }
+  .skills-grid { grid-template-columns:1fr; }
+  .footer-inner { grid-template-columns:1fr 1fr; }
+  .footer-bottom { flex-direction:column; gap:.65rem; text-align:center; }
+}
+@media (max-width:560px) {
+  .exp-grid { grid-template-columns:1fr; }
+  .g3 { grid-template-columns:1fr; }
+  .g4 { grid-template-columns:1fr 1fr; }
+  .form-row { grid-template-columns:1fr; }
+  .footer-inner { grid-template-columns:1fr; }
+  .hero-stats { display:grid; grid-template-columns:1fr 1fr 1fr; }
+}
+
+@media (prefers-reduced-motion:reduce) {
+  *,*::before,*::after { animation-duration:.01ms !important; transition-duration:.01ms !important; }
+}
+
+
+/* COMPACT PUBLICATIONS + ONE-LINE ACADEMIC CONNECT */
+.publication-toggle { background:var(--surface); border:1px solid var(--border); border-radius:18px; padding:1rem 1.1rem; box-shadow:0 14px 36px rgba(0,0,0,.14); }
+.publication-toggle summary { list-style:none; cursor:pointer; display:flex; align-items:center; justify-content:space-between; gap:1rem; color:var(--text); font-weight:700; font-size:.92rem; }
+.publication-toggle summary::-webkit-details-marker { display:none; }
+.pub-summary-left { display:flex; align-items:center; gap:.75rem; }
+.pub-summary-icon { width:36px; height:36px; border-radius:10px; display:flex; align-items:center; justify-content:center; background:rgba(0,212,160,.09); border:1px solid var(--border2); }
+.pub-summary-title { display:block; }
+.pub-summary-note { display:block; font-size:.75rem; font-weight:400; color:var(--text2); margin-top:.05rem; }
+.pub-summary-btn { color:var(--accent); font-family:var(--font-m); font-size:.72rem; white-space:nowrap; }
+.publication-toggle[open] .pub-summary-btn { opacity:.75; }
+.publication-toggle .pub-controls { margin-top:1rem; margin-bottom:.75rem; }
+.publication-toggle .pub-search { padding:.5rem .75rem; font-size:.8rem; min-width:180px; }
+.publication-toggle .ftag { padding:.36rem .65rem; font-size:.72rem; }
+.publication-toggle #pub-list { display:flex; flex-direction:column; gap:.45rem; margin-top:.4rem; }
+.publication-toggle .pub-card { padding:.65rem .75rem; margin:0; border-radius:11px; border-left:2px solid var(--border2); align-items:center; gap:.8rem; }
+.publication-toggle .pub-card.show { display:grid; grid-template-columns:54px 1fr auto; }
+.publication-toggle .pub-yr { margin:0; padding:.18rem .45rem; font-size:.64rem; text-align:center; }
+.publication-toggle .pub-title { font-family:var(--font-b); font-size:.82rem; margin:0; line-height:1.35; }
+.publication-toggle .pub-ref { display:none; }
+.publication-toggle .pub-tags { display:none; }
+.publication-toggle .pub-actions { justify-content:flex-end; gap:.35rem; }
+.publication-toggle .pub-btn { padding:.26rem .55rem; font-size:.68rem; white-space:nowrap; }
+.publication-toggle .pub-btn:not(.main) { display:none; }
+.academic-connect-line { display:flex; flex-wrap:nowrap; gap:.65rem; overflow-x:auto; padding:.25rem .1rem .55rem; scrollbar-width:thin; }
+.academic-connect-line .profile-card { min-width:158px; min-height:auto; padding:.75rem .8rem; border-radius:14px; display:grid; grid-template-columns:auto 1fr; column-gap:.5rem; row-gap:.25rem; align-items:center; }
+.academic-connect-line .profile-icon { grid-row:1 / span 2; font-size:1.05rem; margin:0; }
+.academic-connect-line .profile-name { font-size:.8rem; margin:0; line-height:1.1; }
+.academic-connect-line .profile-sub { font-size:.66rem; min-height:0; margin:0; line-height:1.2; }
+.academic-connect-line .profile-btn { grid-column:1 / -1; margin-top:.35rem; padding:.32rem .45rem; font-size:.66rem; text-align:center; }
+@media (max-width:700px) { .publication-toggle .pub-card.show { grid-template-columns:46px 1fr; } .publication-toggle .pub-actions { grid-column:1 / -1; justify-content:flex-start; } .publication-toggle summary { align-items:flex-start; } .pub-summary-btn { display:none; } }
+
+
+
+/* SIMPLE RESEARCH OUTPUT TITLE LIST */
+.pub-profile-strip{display:flex;gap:.65rem;flex-wrap:wrap;margin-bottom:1.25rem}
+.pub-profile-strip a{display:inline-flex;align-items:center;gap:.35rem;text-decoration:none;color:var(--accent);background:var(--surface);border:1px solid var(--border2);border-radius:999px;padding:.55rem .9rem;font-size:.78rem;font-weight:700}
+.pub-profile-strip a:hover{background:rgba(0,212,160,.08);transform:translateY(-1px)}
+.paper-title-board{background:var(--surface);border:1px solid var(--border);border-radius:18px;padding:1rem;box-shadow:0 16px 42px rgba(0,0,0,.16)}
+.paper-board-head{display:flex;justify-content:space-between;gap:1rem;align-items:center;border-bottom:1px solid var(--border);padding:0 0 .8rem;margin-bottom:.65rem;font-family:var(--font-m);font-size:.72rem;color:var(--text3);text-transform:uppercase;letter-spacing:.12em}
+.paper-board-head span:first-child{color:var(--accent)}
+.paper-title-list{display:grid;grid-template-columns:1fr 1fr;gap:.5rem}
+.paper-title-item{display:grid;grid-template-columns:54px 1fr auto;gap:.65rem;align-items:center;text-decoration:none;color:var(--text);background:rgba(255,255,255,.025);border:1px solid var(--border);border-radius:12px;padding:.65rem .75rem;min-height:58px}
+.paper-title-item:hover{border-color:var(--accent);background:rgba(0,212,160,.06);transform:translateY(-1px)}
+.paper-year{font-family:var(--font-m);font-size:.68rem;color:var(--accent);background:rgba(0,212,160,.09);border:1px solid rgba(0,212,160,.18);border-radius:7px;text-align:center;padding:.16rem .25rem}
+.paper-name{font-size:.82rem;font-weight:600;line-height:1.35;color:var(--text)}
+.paper-open{font-family:var(--font-m);font-size:.62rem;color:var(--text3);text-transform:uppercase;letter-spacing:.08em}
+@media(max-width:860px){.paper-title-list{grid-template-columns:1fr}.paper-title-item{grid-template-columns:48px 1fr auto}}
+@media(max-width:520px){.paper-title-item{grid-template-columns:44px 1fr}.paper-open{display:none}.pub-profile-strip a{width:100%;justify-content:center}}
+
+
+/* HERO ACTION BUTTONS FINAL */
+.hero-btns { flex-wrap:nowrap; align-items:center; }
+.hero-btns .btn-p,
+.hero-btns .btn-o { min-width:142px; justify-content:center; white-space:nowrap; }
+@media (max-width:900px) {
+  .hero-btns { flex-wrap:wrap; justify-content:center; }
+}
+@media (max-width:520px) {
+  .hero-btns { flex-direction:column; align-items:stretch; }
+  .hero-btns .btn-p,
+  .hero-btns .btn-o { width:100%; }
+}
+
+
+
+/* SCHOLARSHIP SHOWCASE - HERO + AWARDS — CLEAN PREMIUM RAIL */
+.sch-panel.sch-horizontal{width:100%;margin-top:.15rem;padding:0;border-radius:18px;background:linear-gradient(180deg,rgba(255,255,255,.035),rgba(0,212,160,.035));border:1px solid rgba(0,212,160,.18);box-shadow:0 18px 46px rgba(0,0,0,.20);overflow:hidden;position:relative;backdrop-filter:blur(16px)}
+.sch-panel.sch-horizontal::before{content:'';position:absolute;inset:0;background:linear-gradient(90deg,rgba(0,212,160,.14),transparent 38%,rgba(0,168,212,.11));opacity:.55;pointer-events:none}
+.sch-panel.sch-horizontal .sch-head{position:relative;z-index:1;display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:.65rem;margin:0;padding:.78rem .95rem;border-bottom:1px solid rgba(0,212,160,.12);background:rgba(0,0,0,.08)}
+.sch-panel.sch-horizontal .sch-head>span:first-child{width:32px;height:32px;border-radius:10px;display:flex;align-items:center;justify-content:center;background:rgba(212,168,81,.12);border:1px solid rgba(212,168,81,.25);font-size:1rem}
+.sch-panel.sch-horizontal .sch-title{font-family:var(--font-m);font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--text2);line-height:1.25}
+.sch-panel.sch-horizontal .sch-badge{background:rgba(0,212,160,.10);border:1px solid rgba(0,212,160,.25);color:var(--accent);box-shadow:none;border-radius:999px;padding:.25rem .62rem;font-family:var(--font-m);font-size:.62rem;font-weight:800;white-space:nowrap}
+.sch-strip{position:relative;z-index:1;display:grid;grid-template-columns:repeat(5,1fr);gap:0;padding:.15rem}
+.sch-pill{min-width:0;display:grid;grid-template-columns:1fr;align-items:center;justify-items:center;gap:.16rem;padding:.72rem .35rem;border-right:1px solid rgba(0,212,160,.10);background:transparent;text-decoration:none;color:var(--text);transition:background .2s,transform .2s,border-color .2s;min-height:76px}
+.sch-pill:last-child{border-right:none}
+.sch-pill:hover{transform:translateY(-2px);background:rgba(0,212,160,.07)}
+.sch-pill .sch-icon{display:none}
+.sch-pill .sch-flag{font-size:1.2rem;line-height:1;order:-1;margin-bottom:.08rem;filter:drop-shadow(0 4px 8px rgba(0,0,0,.18))}
+.sch-pill .sch-name{display:block;font-size:.70rem;font-weight:800;line-height:1.15;white-space:normal;text-align:center;color:var(--text);max-width:95px}
+.sch-pill .sch-meta{display:block;font-family:var(--font-m);font-size:.58rem;color:var(--accent);line-height:1.1;margin-top:.16rem;text-align:center;letter-spacing:.08em}
+.sch-awards-card{padding:1.2rem;background:linear-gradient(180deg,rgba(255,255,255,.032),rgba(0,212,160,.028));border:1px solid rgba(0,212,160,.18);border-radius:18px;box-shadow:0 16px 42px rgba(0,0,0,.16);overflow:hidden;position:relative}
+.sch-awards-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--grad)}
+.sch-awards-head{display:flex;gap:.8rem;align-items:center;margin-bottom:.95rem}
+.sch-awards-icon{width:44px;height:44px;border-radius:14px;display:flex;align-items:center;justify-content:center;background:rgba(212,168,81,.12);border:1px solid rgba(212,168,81,.26);font-size:1.25rem;flex-shrink:0}
+.sch-awards-title{font-family:var(--font-d);font-size:1.08rem;font-weight:700;color:var(--text);line-height:1.15}
+.sch-awards-sub{font-size:.78rem;color:var(--text2);margin-top:.18rem}
+.sch-awards-row{display:grid;grid-template-columns:repeat(5,1fr);border:1px solid rgba(0,212,160,.12);border-radius:15px;overflow:hidden;background:rgba(255,255,255,.02)}
+.sch-award-mini{padding:.82rem .45rem;text-align:center;border-right:1px solid rgba(0,212,160,.10);background:transparent;transition:background .2s,transform .2s}
+.sch-award-mini:last-child{border-right:none}
+.sch-award-mini:hover{background:rgba(0,212,160,.07);transform:translateY(-1px)}
+.sch-award-mini .mini-flag{font-size:1.35rem;margin-bottom:.28rem;display:block}
+.sch-award-mini .mini-name{font-size:.75rem;font-weight:800;line-height:1.2;color:var(--text);display:block}
+.sch-award-mini .mini-year{font-family:var(--font-m);font-size:.64rem;color:var(--accent);display:block;margin-top:.2rem;letter-spacing:.07em}
+@media(max-width:900px){.sch-strip{grid-template-columns:repeat(5,minmax(118px,1fr));overflow-x:auto}.sch-awards-row{grid-template-columns:repeat(3,1fr)}.sch-award-mini:nth-child(3){border-right:none}.sch-award-mini:nth-child(-n+3){border-bottom:1px solid rgba(0,212,160,.10)}}
+@media(max-width:560px){.sch-panel.sch-horizontal .sch-head{grid-template-columns:auto 1fr;padding:.72rem .8rem}.sch-panel.sch-horizontal .sch-badge{grid-column:2}.sch-strip{grid-template-columns:repeat(5,112px);overflow-x:auto}.sch-pill{min-height:72px}.sch-awards-row{grid-template-columns:1fr 1fr}.sch-award-mini{border-bottom:1px solid rgba(0,212,160,.10)}.sch-award-mini:nth-child(odd){border-right:1px solid rgba(0,212,160,.10)}.sch-award-mini:nth-child(even){border-right:none}.sch-award-mini:last-child{grid-column:1 / -1;border-bottom:none}}
+
+
+
+
+/* FINAL 3D SCHOLARSHIP DASHBOARD — HERO + AWARDS */
+.scholarship-dashboard-3d{
+  width:100%;
+  margin-top:.25rem;
+  padding:0;
+  border-radius:22px;
+  position:relative;
+  overflow:hidden;
+  background:
+    radial-gradient(circle at 15% 15%, rgba(212,168,81,.24), transparent 28%),
+    radial-gradient(circle at 90% 8%, rgba(0,168,212,.22), transparent 34%),
+    linear-gradient(145deg, rgba(255,255,255,.11), rgba(0,212,160,.045) 48%, rgba(0,0,0,.18));
+  border:1px solid rgba(212,168,81,.34);
+  box-shadow:0 26px 70px rgba(0,0,0,.34), inset 0 1px 0 rgba(255,255,255,.16);
+  backdrop-filter:blur(18px);
+  transform-style:preserve-3d;
+  isolation:isolate;
+}
+.scholarship-dashboard-3d::before{
+  content:'';
+  position:absolute;
+  inset:-1px;
+  background:linear-gradient(120deg, transparent 0%, rgba(255,255,255,.18) 18%, transparent 36%, transparent 100%);
+  opacity:.6;
+  pointer-events:none;
+}
+.scholarship-dashboard-3d::after{
+  content:'';
+  position:absolute;
+  left:18px; right:18px; bottom:-18px;
+  height:34px;
+  border-radius:50%;
+  background:rgba(0,212,160,.28);
+  filter:blur(20px);
+  z-index:-1;
+}
+.sch-3d-head{
+  display:grid!important;
+  grid-template-columns:auto 1fr auto!important;
+  gap:.75rem!important;
+  align-items:center!important;
+  margin:0!important;
+  padding:.92rem 1rem!important;
+  border-bottom:1px solid rgba(212,168,81,.22)!important;
+  background:linear-gradient(90deg, rgba(0,0,0,.18), rgba(255,255,255,.035));
+}
+.sch-medal{
+  width:42px;height:42px;border-radius:14px;
+  display:flex;align-items:center;justify-content:center;
+  background:linear-gradient(145deg, rgba(212,168,81,.28), rgba(0,212,160,.10));
+  border:1px solid rgba(212,168,81,.38);
+  box-shadow:0 10px 26px rgba(212,168,81,.14), inset 0 1px 0 rgba(255,255,255,.18);
+  font-size:1.25rem;
+}
+.sch-heading-block{min-width:0;}
+.scholarship-dashboard-3d .sch-title{
+  display:block;
+  font-family:var(--font-m);
+  font-size:.69rem;
+  font-weight:900;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+  color:var(--text);
+  line-height:1.15;
+}
+.sch-caption{display:block;font-size:.66rem;color:var(--text2);line-height:1.25;margin-top:.16rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.sch-badge-3d{
+  border-radius:999px!important;
+  padding:.36rem .78rem!important;
+  background:linear-gradient(135deg, #D4A851, #00D4A0)!important;
+  color:#06100D!important;
+  font-weight:900!important;
+  font-size:.66rem!important;
+  letter-spacing:.06em;
+  box-shadow:0 10px 24px rgba(212,168,81,.24)!important;
+}
+.sch-strip-3d{
+  display:grid!important;
+  grid-template-columns:repeat(5,1fr)!important;
+  gap:.55rem!important;
+  padding:.72rem!important;
+  perspective:900px;
+}
+.sch-card-3d{
+  min-height:104px!important;
+  padding:.72rem .44rem!important;
+  border:1px solid rgba(255,255,255,.11)!important;
+  border-radius:16px!important;
+  background:linear-gradient(155deg, rgba(255,255,255,.105), rgba(255,255,255,.025) 55%, rgba(0,212,160,.055))!important;
+  box-shadow:0 14px 30px rgba(0,0,0,.24), inset 0 1px 0 rgba(255,255,255,.13)!important;
+  display:grid!important;
+  grid-template-rows:auto auto auto auto!important;
+  justify-items:center!important;
+  align-items:center!important;
+  gap:.17rem!important;
+  border-right:1px solid rgba(255,255,255,.11)!important;
+  transform:translateZ(0) rotateX(0deg);
+  transition:transform .22s ease, box-shadow .22s ease, border-color .22s ease, background .22s ease!important;
+}
+.sch-card-3d:hover{
+  transform:translateY(-6px) rotateX(8deg) scale(1.025)!important;
+  border-color:rgba(212,168,81,.45)!important;
+  box-shadow:0 24px 42px rgba(0,0,0,.34), 0 0 28px rgba(0,212,160,.12), inset 0 1px 0 rgba(255,255,255,.2)!important;
+  background:linear-gradient(155deg, rgba(212,168,81,.13), rgba(255,255,255,.045) 55%, rgba(0,212,160,.08))!important;
+}
+.sch-card-3d .sch-icon{display:flex!important;width:28px;height:28px;border-radius:10px;align-items:center;justify-content:center;background:rgba(212,168,81,.12);border:1px solid rgba(212,168,81,.24);font-size:.96rem;}
+.sch-card-3d .sch-flag{order:unset!important;font-size:1.32rem!important;line-height:1;filter:drop-shadow(0 8px 10px rgba(0,0,0,.28));margin:0!important;}
+.sch-card-3d .sch-name{font-size:.71rem!important;font-weight:900!important;line-height:1.13!important;color:var(--text)!important;text-align:center!important;max-width:92px!important;}
+.sch-card-3d .sch-meta{font-family:var(--font-m);font-size:.62rem!important;color:#D4A851!important;letter-spacing:.1em!important;margin:0!important;}
+.scholarship-awards-3d{
+  background:radial-gradient(circle at 10% 0%, rgba(212,168,81,.18), transparent 34%), linear-gradient(145deg, rgba(255,255,255,.07), rgba(0,212,160,.035))!important;
+  border:1px solid rgba(212,168,81,.28)!important;
+  box-shadow:0 24px 58px rgba(0,0,0,.24), inset 0 1px 0 rgba(255,255,255,.12)!important;
+}
+.sch-awards-count{margin-left:auto;border-radius:999px;padding:.35rem .8rem;background:linear-gradient(135deg,#D4A851,#00D4A0);color:#06100D;font-family:var(--font-m);font-weight:900;font-size:.7rem;white-space:nowrap;}
+.sch-awards-row-3d{gap:.65rem!important;border:none!important;background:transparent!important;overflow:visible!important;}
+.sch-awards-row-3d .sch-award-mini{
+  border:1px solid rgba(255,255,255,.11)!important;
+  border-radius:16px!important;
+  background:linear-gradient(155deg, rgba(255,255,255,.08), rgba(255,255,255,.025))!important;
+  box-shadow:0 14px 30px rgba(0,0,0,.18), inset 0 1px 0 rgba(255,255,255,.12);
+  padding:.9rem .5rem!important;
+}
+.sch-awards-row-3d .sch-award-mini:hover{transform:translateY(-5px) scale(1.02)!important;border-color:rgba(212,168,81,.45)!important;background:linear-gradient(155deg, rgba(212,168,81,.12), rgba(0,212,160,.045))!important;}
+.sch-awards-row-3d .mini-icon{display:inline-flex;width:28px;height:28px;border-radius:10px;align-items:center;justify-content:center;margin-bottom:.28rem;background:rgba(212,168,81,.12);border:1px solid rgba(212,168,81,.24);}
+.sch-awards-row-3d .mini-flag{font-size:1.35rem!important;margin-bottom:.3rem!important;}
+@media(max-width:1000px){.sch-strip-3d{grid-template-columns:repeat(5, minmax(116px,1fr))!important;overflow-x:auto;}.sch-card-3d{min-height:98px!important}.sch-caption{white-space:normal;}}
+@media(max-width:560px){.sch-3d-head{grid-template-columns:auto 1fr!important}.sch-badge-3d{grid-column:2;justify-self:start}.sch-strip-3d{grid-template-columns:repeat(5,112px)!important;}.sch-card-3d .sch-name{font-size:.68rem!important}.sch-awards-count{display:none;}}
+
+</style>
+</head>
+<body>
+<!-- CURSOR -->
+<div id="cur"></div>
+<div id="cur-r"></div>
+<!-- SCROLL PROGRESS -->
+<div id="scroll-prog" style="width:0"></div>
+<!-- HEX CANVAS (signature background) -->
+<canvas class="hex-canvas" id="hex-canvas"></canvas>
+<!-- LOADER -->
+<div id="loader">
+<div class="loader-dna">
+<div class="dna-dot"></div><div class="dna-dot"></div><div class="dna-dot"></div>
+<div class="dna-dot"></div><div class="dna-dot"></div>
+</div>
+<div id="load-pct">0%</div>
+<div id="load-lbl">Loading Research Portfolio</div>
+</div>
+<!-- MOBILE NAV -->
+<div class="mobile-nav" id="mobile-nav">
+<button aria-label="Close" class="mobile-nav-close" onclick="closeMobile()">✕</button>
+<a data-en="About" data-ko="소개" href="#about" onclick="closeMobile()">About</a>
+<a data-en="Education" data-ko="학력" href="#education" onclick="closeMobile()">Education</a>
+<a data-en="Experience" data-ko="경력" href="#experience" onclick="closeMobile()">Experience</a>
+<a data-en="Expertise" data-ko="전문성" href="#expertise" onclick="closeMobile()">Expertise</a>
+<a data-en="Publications" data-ko="논문" href="#publications" onclick="closeMobile()">Publications</a>
+<a data-en="Awards" data-ko="수상" href="#awards" onclick="closeMobile()">Awards</a>
+<a data-en="Contact" data-ko="연락처" href="#contact" onclick="closeMobile()">Contact</a>
+</div>
+<!-- NAV -->
+<nav>
+<a class="nav-brand" data-en="Biomedical Researcher" data-ko="생의학 연구원" href="#hero">Biomedical Researcher</a>
+<ul class="nav-links">
+<li><a data-en="About" data-ko="소개" href="#about">About</a></li>
+<li><a data-en="Education" data-ko="학력" href="#education">Education</a></li>
+<li><a data-en="Expertise" data-ko="전문성" href="#expertise">Expertise</a></li>
+<li><a data-en="Publications" data-ko="논문" href="#publications">Publications</a></li>
+<li><a data-en="Contact" data-ko="연락처" href="#contact">Contact</a></li>
+</ul>
+<div class="nav-right">
+<div class="menu-wrap">
+<button aria-label="Menu" class="nav-btn" id="menu-btn" onclick="toggleMenu()">
+        ☰ <span data-en="Pages" data-ko="페이지">Pages</span>
+</button>
+<div class="menu-drop" id="menu-drop">
+<a href="#about" onclick="closeMenu()"><span class="mi">👤</span><span data-en="About" data-ko="소개">About</span></a>
+<a href="#education" onclick="closeMenu()"><span class="mi">🎓</span><span data-en="Education" data-ko="학력">Education</span></a>
+<a href="#experience" onclick="closeMenu()"><span class="mi">💼</span><span data-en="Experience" data-ko="경력">Experience</span></a>
+<a href="#expertise" onclick="closeMenu()"><span class="mi">🔬</span><span data-en="Expertise" data-ko="전문성">Expertise</span></a>
+<a href="#skills" onclick="closeMenu()"><span class="mi">📊</span><span data-en="Skills" data-ko="기술">Skills</span></a>
+<div class="mdivider"></div>
+<a href="#publications" onclick="closeMenu()"><span class="mi">📄</span><span data-en="Publications" data-ko="논문">Publications</span></a>
+<a href="#awards" onclick="closeMenu()"><span class="mi">🏆</span><span data-en="Awards" data-ko="수상">Awards</span></a>
+<a href="#conferences" onclick="closeMenu()"><span class="mi">🌐</span><span data-en="Conferences" data-ko="학회">Conferences</span></a>
+<div class="mdivider"></div>
+<a href="#leadership" onclick="closeMenu()"><span class="mi">🤝</span><span data-en="Leadership" data-ko="리더십">Leadership</span></a>
+<a href="#youtube" onclick="closeMenu()"><span class="mi">▶️</span>YouTube</a>
+<a href="#contact" onclick="closeMenu()"><span class="mi">✉️</span><span data-en="Contact" data-ko="연락처">Contact</span></a>
+</div>
+</div>
+<button class="nav-btn" onclick="toggleTheme()">
+<span id="theme-icon">☀️</span><span data-en="Light" data-ko="라이트" id="theme-lbl">Light</span>
+</button>
+<select aria-label="Select language" class="lang-select" id="lang-select" onchange="applyLang(this.value)">
+<option value="en">English</option>
+<option value="ko">한국어</option>
+<option value="zh">中文</option>
+<option value="de">Deutsch</option>
+<option value="fr">Français</option>
+<option value="ru">Русский</option>
+<option value="es">Español</option>
+</select>
+</div>
+<button aria-label="Open menu" class="hamburger" onclick="toggleMobile()">
+<span></span><span></span><span></span>
+</button>
+</nav>
+<!-- ══════════════ HERO ══════════════ -->
+<section id="hero">
+<div class="hero-grid">
+<!-- Left: Photo + Name + Description + Stats -->
+<div class="hero-left fade">
+<div class="portrait-wrap">
+<div class="portrait-ring"></div>
+<div class="portrait-inner">
+<img alt="Muhammad Haris Baig" src="https://plain-eeur-prod-public.komododecks.com/202606/25/uphrwhYlDucpquF4m7Zt/image.png"/>
+</div>
+<div class="portrait-badge">
+<span class="live-dot"></span>
+<strong>Kwon's Stem Cell Lab</strong><br/>
+          Soonchunhyang Univ., KR
+        </div>
+</div>
+<!-- Name + Brief Description block -->
+<div class="hero-identity">
+  <div class="hero-identity-role" data-en="Biomedical Researcher" data-ko="생의학 연구원">Biomedical Researcher</div>
+  <div class="hero-identity-name">HARIS</div>
+  <div class="hero-identity-divider"></div>
+  <p class="hero-identity-desc" data-en="Biomedical researcher at Kwon's Stem Cell Lab, Soonchunhyang University, South Korea. Specializing in hematopoietic stem cell biology, RNA-binding proteins, and molecular diagnostics." data-ko="권 줄기세포 연구실의 생의학 연구원으로 대한민국 순천향대학교 재학 중입니다. 혈액생성 줄기세포 생물학, RNA 결합 단백질 및 분자 진단을 전문으로 합니다.">
+    Biomedical researcher at Kwon's Stem Cell Lab, Soonchunhyang University, South Korea.<br/>Specializing in hematopoietic stem cell biology, RNA-binding proteins, and molecular diagnostics.
+  </p>
+</div>
+<!-- Stats row -->
+<div class="hero-stats">
+<div class="stat-c">
+<span class="stat-n" data-count="12">0</span>
+<span class="stat-l" data-en="Publications" data-ko="논문">Publications</span>
+</div>
+<div class="stat-c">
+<span class="stat-n" data-count="5">0</span>
+<span class="stat-l" data-en="Scholarships" data-ko="장학금">Scholarships</span>
+</div>
+<div class="stat-c">
+<span class="stat-n" data-count="4">0</span>
+<span class="stat-l" data-en="Yrs Research" data-ko="연구 경력">Yrs Research</span>
+</div>
+</div>
+<div class="sch-panel sch-horizontal scholarship-dashboard-3d" style="display:none" aria-hidden="true"></div>
+</div>
+<!-- Right: Scholarship vertical list + Buttons -->
+<div class="hero-right">
+<div class="sch-rail" aria-label="International Research Scholarships">
+<div class="sch-rail-head">
+  <div class="sch-rail-medal">🏅</div>
+  <div>
+    <div class="sch-rail-title" data-en="International Scholarships Won" data-ko="국제 장학금 수상">International Scholarships Won</div>
+    <div class="sch-rail-sub">Competitive global awards · 2025</div>
+  </div>
+  <span class="sch-rail-badge">5 Won</span>
+</div>
+<div class="sch-rail-list">
+  <div class="sch-rail-item">
+    <span class="sch-rail-num">01</span>
+    <span class="sch-rail-flag">🇰🇷</span>
+    <div class="sch-rail-info">
+      <div class="sch-rail-name">GKS – Government Korean Scholarship</div>
+      <div class="sch-rail-country">South Korea · Ministry of Education</div>
+    </div>
+    <span class="sch-rail-year">2025</span>
+  </div>
+  <div class="sch-rail-item">
+    <span class="sch-rail-num">02</span>
+    <span class="sch-rail-flag">🇷🇺</span>
+    <div class="sch-rail-info">
+      <div class="sch-rail-name">Open Doors – Russian Scholarship</div>
+      <div class="sch-rail-country">Russia · HSE University</div>
+    </div>
+    <span class="sch-rail-year">2025</span>
+  </div>
+  <div class="sch-rail-item">
+    <span class="sch-rail-num">03</span>
+    <span class="sch-rail-flag">🇨🇳</span>
+    <div class="sch-rail-info">
+      <div class="sch-rail-name">CSC – Chinese Government Scholarship</div>
+      <div class="sch-rail-country">China · Ministry of Education</div>
+    </div>
+    <span class="sch-rail-year">2025</span>
+  </div>
+  <div class="sch-rail-item">
+    <span class="sch-rail-num">04</span>
+    <span class="sch-rail-flag">🇹🇭</span>
+    <div class="sch-rail-info">
+      <div class="sch-rail-name">AIT – Asian Institute of Technology</div>
+      <div class="sch-rail-country">Thailand · AIT Scholarship Program</div>
+    </div>
+    <span class="sch-rail-year">2025</span>
+  </div>
+  <div class="sch-rail-item">
+    <span class="sch-rail-num">05</span>
+    <span class="sch-rail-flag">🇰🇷</span>
+    <div class="sch-rail-info">
+      <div class="sch-rail-name">PFS – Pakistan-funded Korean Fellowship</div>
+      <div class="sch-rail-country">South Korea · HEC Pakistan</div>
+    </div>
+    <span class="sch-rail-year">2025</span>
+  </div>
+</div>
+<div class="sch-rail-btns hero-btns">
+<a class="btn-p" data-en="📄 View Publications" data-ko="📄 논문 보기" href="#publications">📄 View Publications</a>
+<a class="btn-o" href="https://www.linkedin.com/in/muhammadharisbaig/" target="_blank">💼 LinkedIn</a>
+<a class="btn-o" href="https://orcid.org/0009-0008-2151-8163" target="_blank">🆔 ORCID</a>
+<a class="btn-o" data-en="✉ Contact Me" data-ko="✉ 연락하기" href="mailto:mhb8677@gmail.com">✉ Contact Me</a>
+</div>
+</div>
+</div>
+</div>
+</section>
+<div class="divider"></div>
+<!-- ══════════════ ABOUT ══════════════ -->
+<section id="about">
+<div class="section-eyebrow" data-en="01 · About" data-ko="01 · 소개">01 · About</div>
+<h2 class="section-title fade" data-en="The Researcher&lt;br&gt;Behind the Work" data-ko="연구의 주인공">The Researcher<br/>Behind the Work</h2>
+<div class="about-grid">
+<div class="about-text fade">
+<p data-de="Muhammad Haris Baig ist biomedizinischer Forscher und arbeitet derzeit als Research Assistant im Kwon's Stem Cell Lab an der Soonchunhyang University (SIMS) in Südkorea, einer der führenden Forschungseinrichtungen Asiens." data-en="Muhammad Haris Baig is a biomedical researcher currently working as a Research Assistant at Kwon's Stem Cell Lab - one of Asia's top-ranked research institutions - at Soonchunhyang University (SIMS), South Korea." data-es="Muhammad Haris Baig es investigador biomédico y actualmente trabaja como asistente de investigación en Kwon's Stem Cell Lab de Soonchunhyang University (SIMS), Corea del Sur, una de las instituciones de investigación mejor posicionadas de Asia." data-fr="Muhammad Haris Baig est chercheur biomédical et travaille actuellement comme assistant de recherche au Kwon's Stem Cell Lab de l'Université Soonchunhyang (SIMS), en Corée du Sud, l'un des instituts de recherche les mieux classés d'Asie." data-ko="무함마드 하리스 바이그는 현재 대한민국 순천향대학교(SIMS)의 아시아 최고 수준 연구기관 중 하나인 권 줄기세포 연구실에서 연구 조교로 근무하고 있는 생의학 연구자입니다." data-ru="Мухаммад Харис Байг — биомедицинский исследователь, в настоящее время работающий ассистентом-исследователем в Kwon's Stem Cell Lab Университета Soonchunhyang (SIMS), Южная Корея, одном из ведущих исследовательских институтов Азии." data-zh="Muhammad Haris Baig 是一名生物医学研究者，目前在韩国顺天乡大学（SIMS）Kwon 干细胞实验室担任研究助理，该实验室是亚洲领先的研究机构之一。">
+        Muhammad Haris Baig is a biomedical researcher currently working as a Research Assistant at Kwon's Stem Cell Lab - one of Asia's top-ranked research institutions - at Soonchunhyang University (SIMS), South Korea.
+      </p>
+<p data-de="Meine Forschung konzentriert sich auf RNA-bindende Proteine in der Erhaltung hämatopoetischer Stammzellen, Leukämogenese, molekularer Krebsbiologie, Nanotechnologie und diagnostischen Wissenschaften. Ich habe mehrere Arbeiten in internationalen Fachzeitschriften veröffentlicht, zahlreiche Artikel für verschiedene Journale begutachtet und bilde über meinen YouTube-Kanal &lt;a href='https://www.youtube.com/@medicallabtactics' target='_blank'&gt;Medical Lab Tactics&lt;/a&gt; die nächste Generation biomedizinischer Fachkräfte aus. Sehen Sie sich meine &lt;a href='#publications'&gt;Publikationen&lt;/a&gt; an." data-en="My research focuses on RNA-binding proteins in hematopoietic stem cell maintenance, leukemogenesis, cancer molecular biology, nanotechnology, and diagnostic sciences. I have authored multiple papers in international journals, reviewed multiple articles for various journals, and educate the next generation of biomedical professionals through my YouTube channel &lt;a href='https://www.youtube.com/@medicallabtactics' target='_blank'&gt;Medical Lab Tactics&lt;/a&gt;. Explore my &lt;a href='#publications'&gt;publications&lt;/a&gt;." data-es="Mi investigación se centra en las proteínas de unión al ARN en el mantenimiento de células madre hematopoyéticas, la leucemogénesis, la biología molecular del cáncer, la nanotecnología y las ciencias diagnósticas. He publicado múltiples artículos en revistas internacionales, revisado varios manuscritos para distintas revistas y educo a la próxima generación de profesionales biomédicos a través de mi canal de YouTube &lt;a href='https://www.youtube.com/@medicallabtactics' target='_blank'&gt;Medical Lab Tactics&lt;/a&gt;. Consulte mis &lt;a href='#publications'&gt;publicaciones&lt;/a&gt;." data-fr="Mes recherches portent sur les protéines de liaison à l'ARN dans le maintien des cellules souches hématopoïétiques, la leucémogenèse, la biologie moléculaire du cancer, la nanotechnologie et les sciences diagnostiques. J'ai publié plusieurs articles dans des revues internationales, évalué plusieurs manuscrits pour différentes revues, et je forme la prochaine génération de professionnels biomédicaux via ma chaîne YouTube &lt;a href='https://www.youtube.com/@medicallabtactics' target='_blank'&gt;Medical Lab Tactics&lt;/a&gt;. Consultez mes &lt;a href='#publications'&gt;publications&lt;/a&gt;." data-ko="제 연구는 조혈 줄기세포 유지, 백혈병 발생, 암 분자생물학, 나노기술 및 진단과학에서 RNA 결합 단백질의 역할에 초점을 맞추고 있습니다. 저는 국제 학술지에 여러 논문을 발표했고, 다양한 학술지의 원고를 심사했으며, 제 유튜브 채널 &lt;a href='https://www.youtube.com/@medicallabtactics' target='_blank'&gt;Medical Lab Tactics&lt;/a&gt;를 통해 차세대 생의학 전문가를 교육하고 있습니다. 제 &lt;a href='#publications'&gt;논문 목록&lt;/a&gt;도 확인하실 수 있습니다." data-ru="Мои исследования сосредоточены на РНК-связывающих белках в поддержании гемопоэтических стволовых клеток, лейкемогенезе, молекулярной биологии рака, нанотехнологиях и диагностических науках. Я опубликовал несколько статей в международных журналах, рецензировал статьи для различных журналов и обучаю новое поколение биомедицинских специалистов через мой YouTube-канал &lt;a href='https://www.youtube.com/@medicallabtactics' target='_blank'&gt;Medical Lab Tactics&lt;/a&gt;. Ознакомьтесь с моими &lt;a href='#publications'&gt;публикациями&lt;/a&gt;." data-zh="我的研究聚焦于RNA结合蛋白在造血干细胞维持、白血病发生、癌症分子生物学、纳米技术和诊断科学中的作用。我已在国际期刊发表多篇论文，为多种期刊审阅过多篇稿件，并通过我的 YouTube 频道 &lt;a href='https://www.youtube.com/@medicallabtactics' target='_blank'&gt;Medical Lab Tactics&lt;/a&gt; 培养下一代生物医学专业人才。欢迎查看我的 &lt;a href='#publications'&gt;发表论文&lt;/a&gt;。">
+        My research focuses on RNA-binding proteins in hematopoietic stem cell maintenance, leukemogenesis, cancer molecular biology, nanotechnology, and diagnostic sciences. I have authored multiple papers in international journals, reviewed multiple articles for various journals, and educate the next generation of biomedical professionals through my YouTube channel <a href="https://www.youtube.com/@medicallabtactics" target="_blank">Medical Lab Tactics</a>. Explore my <a href="#publications">publications</a>.
+      </p>
+<div class="chips">
+<span class="chip" data-en="Stem Cell Biology" data-ko="줄기세포 생물학">Stem Cell Biology</span>
+<span class="chip" data-en="Hematopoiesis" data-ko="조혈">Hematopoiesis</span>
+<span class="chip" data-en="Molecular Oncology" data-ko="분자 종양학">Molecular Oncology</span>
+<span class="chip" data-en="Flow Cytometry" data-ko="유세포 분석">Flow Cytometry</span>
+<span class="chip">CRISPR</span>
+<span class="chip" data-en="Bioinformatics" data-ko="생물정보학">Bioinformatics</span>
+<span class="chip">scRNA-seq</span>
+<span class="chip" data-en="PCR / qPCR" data-ko="PCR / qPCR">PCR / qPCR</span>
+</div>
+</div>
+<div class="about-facts fade">
+<div class="fact"><div class="fact-l" data-en="Current Position" data-ko="현재 직위">Current Position</div><div class="fact-v" data-en="Research Assistant - Kwon's Stem Cell Lab" data-ko="연구 조교 - 권 줄기세포 연구실">Research Assistant - Kwon's Stem Cell Lab</div></div>
+<div class="fact"><div class="fact-l" data-en="Institution" data-ko="소속 기관">Institution</div><div class="fact-v" data-en="Soonchunhyang University, South Korea" data-ko="순천향대학교, 대한민국">Soonchunhyang University, South Korea</div></div>
+<div class="fact"><div class="fact-l" data-en="Location" data-ko="위치">Location</div><div class="fact-v" data-en="Cheonan 31151, South Korea" data-ko="대한민국 31151 천안">Cheonan 31151, South Korea</div></div>
+<div class="fact"><div class="fact-l">ORCID</div><div class="fact-v">0009-0008-2151-8163</div></div>
+</div>
+</div>
+</section>
+<div class="divider"></div>
+<!-- ══════════════ EDUCATION ══════════════ -->
+<section id="education">
+<div class="section-eyebrow" data-en="02 · Education" data-ko="02 · 학력">02 · Education</div>
+<h2 class="section-title fade" data-en="Academic Background" data-ko="학력 배경">Academic Background</h2>
+<div class="timeline">
+<div class="tl-item">
+<div class="tl-dot"></div>
+<div class="tl-date" data-en="Sep 2025 - Present" data-ko="2025년 9월 - 현재">Sep 2025 - Present</div>
+<div class="tl-title" data-en="Research Assistant - Stem Cell Scientist" data-ko="연구 조교 - 줄기세포 과학자">Research Assistant - Stem Cell Scientist</div>
+<div class="tl-org" data-en="Kwon's Stem Cell Lab, Soonchunhyang University, South Korea" data-ko="권 줄기세포 연구실, 순천향대학교, 대한민국">Kwon's Stem Cell Lab, Soonchunhyang University, South Korea</div>
+<div class="tl-body" data-en="Occupationally working as biomedical Stem Cells analyst at one of Asia's top-ranked research institutes. Conducting cutting-edge research in hematopoietic stem cell biology, RNA-binding proteins, and leukemia initiation. Website: thekwonlab.org" data-ko="아시아 최고 수준의 연구소 중 하나에서 생의학 줄기세포 분석가로 근무 중. 조혈 줄기세포 생물학, RNA 결합 단백질 및 백혈병 개시에 관한 최첨단 연구 수행. 웹사이트: thekwonlab.org">Occupationally working as biomedical Stem Cells analyst at one of Asia's top-ranked research institutes. Conducting cutting-edge research in hematopoietic stem cell biology, RNA-binding proteins, and leukemia initiation. Website: thekwonlab.org</div>
+</div>
+<div class="tl-item">
+<div class="tl-dot"></div>
+<div class="tl-date" data-en="Nov 2020 - Sep 2024" data-ko="2020년 11월 - 2024년 9월">Nov 2020 - Sep 2024</div>
+<div class="tl-title" data-en="BSc Medical Laboratory Technology" data-ko="의료검사기술학 학사">BSc Medical Laboratory Technology</div>
+<div class="tl-org" data-en="Government College University Faisalabad, Pakistan" data-ko="파이살라바드 정부대학교, 파키스탄">Government College University Faisalabad, Pakistan</div>
+<div class="tl-body" data-en='Final CGPA: 3.91 / 4.00 · Gold Medalist · Thesis: "Complications Survey Related to Thalassemia Biomarkers". Recipient of Talent Bachelor Scholarship by Interloop Limited (2020-2024) and Prime Minister Youth Laptop Scheme (2023).' data-ko='최종 학점: 3.91 / 4.00 · 금메달리스트 · 논문: "지중해 빈혈 바이오마커 관련 합병증 조사". Interloop Limited 인재 학사 장학금(2020-2024) 및 국무총리 청년 노트북 지원 제도(2023) 수혜자.'>Final CGPA: 3.91 / 4.00 · Gold Medalist · Thesis: "Complications Survey Related to Thalassemia Biomarkers". Recipient of Talent Bachelor Scholarship by Interloop Limited (2020-2024) and Prime Minister Youth Laptop Scheme (2023).</div>
+</div>
+<div class="tl-item">
+<div class="tl-dot"></div>
+<div class="tl-date" data-en="Feb 2022 - May 2025" data-ko="2022년 2월 - 2025년 5월">Feb 2022 - May 2025</div>
+<div class="tl-title" data-en="Diploma - Medicine Pharmacist" data-ko="약학 약사 (디플로마)">Diploma - Medicine Pharmacist</div>
+<div class="tl-org" data-en="Safia Ijaz Institute of Health Sciences, Faisalabad, Pakistan" data-ko="사피아 이자즈 보건과학연구소, 파이살라바드, 파키스탄">Safia Ijaz Institute of Health Sciences, Faisalabad, Pakistan</div>
+<div class="tl-body" data-en="Concurrent pharmaceutical sciences training alongside undergraduate studies, expanding clinical and pharmacological knowledge base." data-ko="학부 과정과 병행한 제약 과학 훈련으로 임상 및 약리학적 지식 기반을 확장.">Concurrent pharmaceutical sciences training alongside undergraduate studies, expanding clinical and pharmacological knowledge base.</div>
+</div>
+<div class="tl-item">
+<div class="tl-dot"></div>
+<div class="tl-date" data-en="Aug 2021 - Apr 2022" data-ko="2021년 8월 - 2022년 4월">Aug 2021 - Apr 2022</div>
+<div class="tl-title" data-en="Medical Laboratory Technologist - 6-Month Internship" data-ko="의료검사기사 - 6개월 공식 인턴십">Medical Laboratory Technologist - 6-Month Internship</div>
+<div class="tl-org" data-en="Al Rahmat Laboratories, Faisalabad, Pakistan" data-ko="알 라흐맛 실험실, 파이살라바드, 파키스탄">Al Rahmat Laboratories, Faisalabad, Pakistan</div>
+<div class="tl-body" data-en="Formal clinical training covering pre-analytical, analytical, and post-analytical laboratory processes across hematology, biochemistry, and microbiology departments." data-ko="혈액학, 생화학 및 미생물학 부서에 걸친 분석 전, 분석, 분석 후 실험실 과정을 포함하는 공식 임상 교육.">Formal clinical training covering pre-analytical, analytical, and post-analytical laboratory processes across hematology, biochemistry, and microbiology departments.</div>
+</div>
+</div>
+</section>
+<div class="divider"></div>
+<!-- ══════════════ EXPERIENCE ══════════════ -->
+<section id="experience">
+<div class="section-eyebrow" data-en="03 · Work Experience" data-ko="03 · 직무 경력">03 · Work Experience</div>
+<h2 class="section-title fade" data-en="Professional Timeline" data-ko="경력 타임라인">Professional Timeline</h2>
+<p class="section-sub fade" data-en="Five years of hands-on clinical laboratory and academic experience across leading institutions." data-ko="주요 기관에서 쌓은 5년간의 임상 실험실 및 학술 경험.">Five years of hands-on clinical laboratory and academic experience across leading institutions.</p>
+<div class="timeline">
+<div class="tl-item">
+<div class="tl-dot"></div>
+<div class="tl-date" data-en="Aug 2024 - Aug 2025" data-ko="2024년 8월 - 2025년 8월">Aug 2024 - Aug 2025</div>
+<div class="tl-title" data-en="Laboratory Incharge" data-ko="실험실 책임자">Laboratory Incharge</div>
+<div class="tl-org" data-en="ABWA Medical College, Department of Anatomy · Khurrianwala, Faisalabad" data-ko="ABWA 의과대학, 해부학과 · 쿠리안왈라, 파이살라바드">ABWA Medical College, Department of Anatomy · Khurrianwala, Faisalabad</div>
+<div class="tl-body" data-en="Responsible for managing anatomy laboratory operations, overseeing equipment, coordinating with department faculty, and ensuring quality standards for undergraduate medical education." data-ko="해부학 실험실 운영 관리, 장비 감독, 학과 교수진과의 조율, 학부 의학 교육의 품질 기준 확보 담당.">Responsible for managing anatomy laboratory operations, overseeing equipment, coordinating with department faculty, and ensuring quality standards for undergraduate medical education.</div>
+</div>
+<div class="tl-item">
+<div class="tl-dot"></div>
+<div class="tl-date" data-en="Mar 2024 - Aug 2025" data-ko="2024년 3월 - 2025년 8월">Mar 2024 - Aug 2025</div>
+<div class="tl-title" data-en="Medical Laboratory Technologist" data-ko="의료검사기사">Medical Laboratory Technologist</div>
+<div class="tl-org" data-en="SHIFA Diagnostic Laboratories · Faisalabad, Pakistan" data-ko="SHIFA 진단 실험실 · 파이살라바드, 파키스탄">SHIFA Diagnostic Laboratories · Faisalabad, Pakistan</div>
+<div class="tl-body" data-en="&lt;ul&gt;&lt;li&gt;Operated Hematology Mythic 18 and Chemistry Microlab 300 analyzers&lt;/li&gt;&lt;li&gt;Conducted HbA1c analysis on QUO-Test Analyzer&lt;/li&gt;&lt;li&gt;Performed ELISA and CLIA techniques on Selectra and Cobas platforms&lt;/li&gt;&lt;li&gt;Applied manual pipetting tactics with Diasys Reagents&lt;/li&gt;&lt;/ul&gt;" data-ko="&lt;ul&gt;&lt;li&gt;혈액학 Mythic 18 및 화학 Microlab 300 분석기 운용&lt;/li&gt;&lt;li&gt;QUO-Test 분석기를 사용한 HbA1c 분석 수행&lt;/li&gt;&lt;li&gt;Selectra 및 Cobas 플랫폼에서 ELISA 및 CLIA 기법 적용&lt;/li&gt;&lt;li&gt;Diasys 시약으로 수동 피펫팅 기법 적용&lt;/li&gt;&lt;/ul&gt;"><ul>
+<li>Operated Hematology Mythic 18 and Chemistry Microlab 300 analyzers</li>
+<li>Conducted HbA1c analysis on QUO-Test Analyzer</li>
+<li>Performed ELISA and CLIA techniques on Selectra and Cobas platforms</li>
+<li>Applied manual pipetting tactics with Diasys Reagents</li>
+</ul></div>
+</div>
+<div class="tl-item">
+<div class="tl-dot"></div>
+<div class="tl-date" data-en="Sep 2023 - Jul 2024" data-ko="2023년 9월 - 2024년 7월">Sep 2023 - Jul 2024</div>
+<div class="tl-title" data-en="Medical Laboratory Technologist" data-ko="의료검사기사">Medical Laboratory Technologist</div>
+<div class="tl-org" data-en="Al Kabeer International Diagnostic and Research Laboratory · Faisalabad" data-ko="알 카비르 국제 진단 및 연구 실험실 · 파이살라바드">Al Kabeer International Diagnostic and Research Laboratory · Faisalabad</div>
+<div class="tl-body" data-en="&lt;ul&gt;&lt;li&gt;Expertise in both Pathology and Molecular laboratory workflows&lt;/li&gt;&lt;li&gt;Gained insight in Hematology and Chemistry automation platforms&lt;/li&gt;&lt;li&gt;Operated ECL-8000 Lifotronic for special chemistry automation&lt;/li&gt;&lt;li&gt;Collaborated with senior scientists and pathologists on complex cases&lt;/li&gt;&lt;/ul&gt;" data-ko="&lt;ul&gt;&lt;li&gt;병리학 및 분자 실험실 워크플로우 전문 지식 보유&lt;/li&gt;&lt;li&gt;혈액학 및 화학 자동화 플랫폼에 대한 이해 습득&lt;/li&gt;&lt;li&gt;특수 화학 자동화를 위한 ECL-8000 Lifotronic 운용&lt;/li&gt;&lt;li&gt;복잡한 케이스에서 선임 과학자 및 병리학자와 협력&lt;/li&gt;&lt;/ul&gt;"><ul>
+<li>Expertise in both Pathology and Molecular laboratory workflows</li>
+<li>Gained insight in Hematology and Chemistry automation platforms</li>
+<li>Operated ECL-8000 Lifotronic for special chemistry automation</li>
+<li>Collaborated with senior scientists and pathologists on complex cases</li>
+</ul></div>
+</div>
+<div class="tl-item">
+<div class="tl-dot"></div>
+<div class="tl-date" data-en="Nov 2022 - Aug 2023" data-ko="2022년 11월 - 2023년 8월">Nov 2022 - Aug 2023</div>
+<div class="tl-title" data-en="Medical Laboratory Technologist" data-ko="의료검사기사">Medical Laboratory Technologist</div>
+<div class="tl-org" data-en="AL-KABEER Laboratories and Diagnostic Center · Faisalabad" data-ko="AL-KABEER 실험실 및 진단 센터 · 파이살라바드">AL-KABEER Laboratories and Diagnostic Center · Faisalabad</div>
+<div class="tl-body" data-en="&lt;ul&gt;&lt;li&gt;Specialized in special chemistry section alongside senior scientists&lt;/li&gt;&lt;li&gt;Applied manual and automation methods in analytical section&lt;/li&gt;&lt;li&gt;Maintained departmental quality standards in pipetting and sample handling&lt;/li&gt;&lt;/ul&gt;" data-ko="&lt;ul&gt;&lt;li&gt;선임 과학자와 함께 특수 화학 부문 전문화&lt;/li&gt;&lt;li&gt;분석 섹션에서 수동 및 자동화 방법 적용&lt;/li&gt;&lt;li&gt;피펫팅 및 샘플 처리에서 부서 품질 기준 유지&lt;/li&gt;&lt;/ul&gt;"><ul>
+<li>Specialized in special chemistry section alongside senior scientists</li>
+<li>Applied manual and automation methods in analytical section</li>
+<li>Maintained departmental quality standards in pipetting and sample handling</li>
+</ul></div>
+</div>
+<div class="tl-item">
+<div class="tl-dot"></div>
+<div class="tl-date" data-en="Apr 2021 - Jul 2022" data-ko="2021년 4월 - 2022년 7월">Apr 2021 - Jul 2022</div>
+<div class="tl-title" data-en="Medical Laboratory Technologist" data-ko="의료검사기사">Medical Laboratory Technologist</div>
+<div class="tl-org" data-en="MUNAWAR MUKHTAR Clinical Laboratory · Faisalabad" data-ko="MUNAWAR MUKHTAR 임상 실험실 · 파이살라바드">MUNAWAR MUKHTAR Clinical Laboratory · Faisalabad</div>
+<div class="tl-body" data-en="&lt;ul&gt;&lt;li&gt;Managed pre-analytical, analytical, and post-analytical sample workflows&lt;/li&gt;&lt;li&gt;Operated automated analyzers across Hematology and Biochemistry departments&lt;/li&gt;&lt;li&gt;Developed quality pipetting skills and high-volume workflow management&lt;/li&gt;&lt;/ul&gt;" data-ko="&lt;ul&gt;&lt;li&gt;분석 전, 분석, 분석 후 샘플 워크플로우 관리&lt;/li&gt;&lt;li&gt;혈액학 및 생화학 부서 전반의 자동화 분석기 운용&lt;/li&gt;&lt;li&gt;품질 피펫팅 기술 및 대용량 워크플로우 관리 역량 개발&lt;/li&gt;&lt;/ul&gt;"><ul>
+<li>Managed pre-analytical, analytical, and post-analytical sample workflows</li>
+<li>Operated automated analyzers across Hematology and Biochemistry departments</li>
+<li>Developed quality pipetting skills and high-volume workflow management</li>
+</ul></div>
+</div>
+</div>
+</section>
+<div class="divider"></div>
+<!-- ══════════════ PUBLICATIONS ══════════════ -->
+<section id="publications">
+<div class="section-eyebrow" data-en="06 · Publications" data-ko="06 · 논문">06 · Publications</div>
+<h2 class="section-title fade" data-en="Research Output" data-ko="연구 성과">Research Output</h2>
+<p class="section-sub fade">Published papers are listed by year in descending order. Click any title to open the paper or its indexed record.</p>
+<div class="pub-profile-strip fade">
+<a href="https://scholar.google.com/citations?user=H319JIsAAAAJ&amp;hl=en" target="_blank">🎓 Google Scholar</a>
+<a href="https://schpath.academia.edu/MuhammadHarisBaig" target="_blank">📚 Academia.edu</a>
+<a href="https://www.researchgate.net/profile/Muhammad-Haris-Baig?ev=hdr_xprf" target="_blank">🔬 ResearchGate</a>
+</div>
+<div class="paper-title-board fade">
+<div class="paper-board-head">
+<span>Published Papers</span>
+<span>Newest first</span>
+</div>
+<div class="paper-title-list">
+<a class="paper-title-item" href="https://scholar.google.com/scholar?q=Comparative+Evaluation+of+Point-of-Care+Testing+Methods+and+Laboratory-Based+Spectrophotometric+Analysis+for+Blood+Glucose+Estimation+A+Narrative+Review" target="_blank">
+<span class="paper-year">2026</span>
+<span class="paper-name">Comparative Evaluation of Point-of-Care Testing Methods and Laboratory-Based Spectrophotometric Analysis for Blood Glucose Estimation: A Narrative Review</span>
+<span class="paper-open">Open</span>
+</a>
+<a class="paper-title-item" href="https://doi.org/10.22037/aab.v17i1.51400" target="_blank">
+<span class="paper-year">2026</span>
+<span class="paper-name">RBPs in Hematopoietic Stem Cell Maintenance and Leukemia Initiation: Critical Gaps</span>
+<span class="paper-open">Open</span>
+</a>
+<a class="paper-title-item" href="https://ejournal.yasin-alsys.org/AJMSPHR/article/view/6068" target="_blank">
+<span class="paper-year">2025</span>
+<span class="paper-name">Breast Cancer in the Modern Era: Molecular Strategies for Tumor Targeting and Diagnosis</span>
+<span class="paper-open">Open</span>
+</a>
+<a class="paper-title-item" href="https://ejournal.yasin-alsys.org/AJMSPHR/article/view/6067" target="_blank">
+<span class="paper-year">2025</span>
+<span class="paper-name">Meta-Analysis of Genes Associated with Craniofacial Microsomia (CFM)</span>
+<span class="paper-open">Open</span>
+</a>
+<a class="paper-title-item" href="https://doi.org/10.58578/ajbmbr.v2i2.5581" target="_blank">
+<span class="paper-year">2025</span>
+<span class="paper-name">Musashi Proteins as Prognostic Biomarkers: Role in Leukemic Cancer and Stem Cells Growth</span>
+<span class="paper-open">Open</span>
+</a>
+<a class="paper-title-item" href="https://scholar.google.com/scholar?q=At+the+Crossroads+of+Nanotechnology+and+Biology+Pioneering+Applications+in+Medicine+and+Biotechnology" target="_blank">
+<span class="paper-year">2024</span>
+<span class="paper-name">At the Crossroads of Nanotechnology and Biology: Pioneering Applications in Medicine and Biotechnology</span>
+<span class="paper-open">Open</span>
+</a>
+<a class="paper-title-item" href="https://doi.org/10.54112/bcsrj.v2024i1.1152" target="_blank">
+<span class="paper-year">2024</span>
+<span class="paper-name">Biosynthesize Nanoparticles as Advanced Nanocarriers for Targeted Therapeutic Interventions in Disease Management</span>
+<span class="paper-open">Open</span>
+</a>
+<a class="paper-title-item" href="https://remittancesreview.com/menu-script/index.php/remittances/article/view/1758" target="_blank">
+<span class="paper-year">2024</span>
+<span class="paper-name">Complications Survey Related to Thalassemia Biomarkers</span>
+<span class="paper-open">Open</span>
+</a>
+<a class="paper-title-item" href="https://doi.org/10.53555/a6910h32" target="_blank">
+<span class="paper-year">2024</span>
+<span class="paper-name">Contraceptives Related to Uterine Cancer</span>
+<span class="paper-open">Open</span>
+</a>
+<a class="paper-title-item" href="https://scholar.google.com/scholar?q=Genetic+Conduits+Dynamics+of+Antibiotic+Resistance+Gene+Transfer+Between+Gram-positive+and+Gram-negative+Bacteria" target="_blank">
+<span class="paper-year">2024</span>
+<span class="paper-name">Genetic Conduits: Dynamics of Antibiotic Resistance Gene Transfer Between Gram-positive and Gram-negative Bacteria</span>
+<span class="paper-open">Open</span>
+</a>
+<a class="paper-title-item" href="https://medicalsciencereview.com/index.php/Journal/article/view/95" target="_blank">
+<span class="paper-year">2024</span>
+<span class="paper-name">Microbial Biomarkers in Cancer Early Detection and Prognostic Breakthroughs</span>
+<span class="paper-open">Open</span>
+</a>
+<a class="paper-title-item" href="https://scholar.google.com/scholar?q=Prevalence+of+Transfusion-Transmissible+Infections+TTIs+in+Blood+Donors+in+District+Faisalabad" target="_blank">
+<span class="paper-year">2024</span>
+<span class="paper-name">Prevalence of Transfusion-Transmissible Infections (TTIs) in Blood Donors in District Faisalabad</span>
+<span class="paper-open">Open</span>
+</a>
+<a class="paper-title-item" href="https://zenodo.org/records/13897856" target="_blank">
+<span class="paper-year">2024</span>
+<span class="paper-name">The Influence of the Gut Microbiome on Cancer Development: Potential for Microbiome-Based Therapies</span>
+<span class="paper-open">Open</span>
+</a>
+</div>
+</div>
+</section>
+<div class="divider"></div>
+<!-- ══════════════ EXPERTISE ══════════════ -->
+<section id="expertise">
+<div class="section-eyebrow" data-en="04 · Research Expertise" data-ko="04 · 연구 전문성">04 · Research Expertise</div>
+<h2 class="section-title fade" data-en="Technical Arsenal" data-ko="기술 역량">Technical Arsenal</h2>
+<p class="section-sub fade" data-en="Advanced laboratory competencies spanning molecular biology, cytometry, and bioinformatics." data-ko="분자생물학, 세포계측 및 생물정보학을 아우르는 고급 실험실 역량.">Advanced laboratory competencies spanning molecular biology, cytometry, and bioinformatics.</p>
+<div class="exp-grid fade">
+<div class="exp-card"><div class="exp-icon">🔵</div><div class="exp-name" data-en="Flow Cytometry &amp; FACS" data-ko="유세포 분석 및 FACS">Flow Cytometry &amp; FACS</div><div class="exp-desc" data-en="Advanced immunophenotyping and fluorescence-activated cell sorting for stem cell characterization and immune profiling." data-ko="줄기세포 특성 분석 및 면역 프로파일링을 위한 고급 면역표현형 분석 및 형광 활성화 세포 분류.">Advanced immunophenotyping and fluorescence-activated cell sorting for stem cell characterization and immune profiling.</div></div>
+<div class="exp-card"><div class="exp-icon">🔬</div><div class="exp-name" data-en="Immunofluorescence Microscopy" data-ko="면역형광 현미경">Immunofluorescence Microscopy</div><div class="exp-desc" data-en="High-resolution imaging techniques for cellular and subcellular protein localization studies." data-ko="세포 및 세포 하부 단백질 위치 연구를 위한 고해상도 이미징 기법.">High-resolution imaging techniques for cellular and subcellular protein localization studies.</div></div>
+<div class="exp-card"><div class="exp-icon">⚡</div><div class="exp-name" data-en="Electrophoresis &amp; Western Blot" data-ko="전기영동 및 웨스턴 블롯">Electrophoresis &amp; Western Blot</div><div class="exp-desc" data-en="Protein separation and identification via SDS-PAGE and immunoblotting for expression analysis." data-ko="발현 분석을 위한 SDS-PAGE 및 면역블로팅을 통한 단백질 분리 및 동정.">Protein separation and identification via SDS-PAGE and immunoblotting for expression analysis.</div></div>
+<div class="exp-card"><div class="exp-icon">🧫</div><div class="exp-name" data-en="ELISA &amp; Multiplex Cytokine Assays" data-ko="ELISA 및 다중 사이토카인 분석">ELISA &amp; Multiplex Cytokine Assays</div><div class="exp-desc" data-en="Quantitative immunoassay techniques for cytokine profiling and biomarker detection at high sensitivity." data-ko="고감도 사이토카인 프로파일링 및 바이오마커 검출을 위한 정량 면역분석 기법.">Quantitative immunoassay techniques for cytokine profiling and biomarker detection at high sensitivity.</div></div>
+<div class="exp-card"><div class="exp-icon">🧬</div><div class="exp-name" data-en="RT-PCR · qRT-PCR · dPCR" data-ko="RT-PCR · qRT-PCR · dPCR">RT-PCR · qRT-PCR · dPCR</div><div class="exp-desc" data-en="Quantitative gene expression analysis using real-time and digital PCR platforms with high precision." data-ko="실시간 및 디지털 PCR 플랫폼을 사용한 고정밀 정량 유전자 발현 분석.">Quantitative gene expression analysis using real-time and digital PCR platforms with high precision.</div></div>
+<div class="exp-card"><div class="exp-icon">📊</div><div class="exp-name" data-en="Single-Cell RNA-seq &amp; ATAC-seq" data-ko="단일세포 RNA-seq 및 ATAC-seq">Single-Cell RNA-seq &amp; ATAC-seq</div><div class="exp-desc" data-en="Next-generation sequencing approaches for single-cell transcriptomic and chromatin accessibility profiling." data-ko="단일세포 전사체 및 크로마틴 접근성 프로파일링을 위한 차세대 시퀀싱 기법.">Next-generation sequencing approaches for single-cell transcriptomic and chromatin accessibility profiling.</div></div>
+<div class="exp-card"><div class="exp-icon">⚗️</div><div class="exp-name" data-en="Mass Spectrometry Proteomics" data-ko="질량분석 단백질체학">Mass Spectrometry Proteomics</div><div class="exp-desc" data-en="Comprehensive proteome analysis for identifying and quantifying protein expression in complex biological samples." data-ko="복잡한 생물학적 샘플에서 단백질 발현을 동정하고 정량화하는 포괄적 단백질체 분석.">Comprehensive proteome analysis for identifying and quantifying protein expression in complex biological samples.</div></div>
+<div class="exp-card"><div class="exp-icon">✂️</div><div class="exp-name" data-en="CRISPR Gene Editing" data-ko="CRISPR 유전자 편집">CRISPR Gene Editing</div><div class="exp-desc" data-en="Precision genome engineering using CRISPR-Cas9 for functional genomics and therapeutic research applications." data-ko="기능 유전체학 및 치료 연구 응용을 위한 CRISPR-Cas9 정밀 유전체 공학.">Precision genome engineering using CRISPR-Cas9 for functional genomics and therapeutic research applications.</div></div>
+<div class="exp-card"><div class="exp-icon">💻</div><div class="exp-name" data-en="Bioinformatics - R Tool" data-ko="생물정보학 - R 도구">Bioinformatics - R Tool</div><div class="exp-desc" data-en="Statistical genomics and bioinformatics analysis using R for data visualization, meta-analysis, and omics workflows." data-ko="데이터 시각화, 메타 분석 및 오믹스 워크플로우를 위한 R 기반 통계 유전체학 및 생물정보학 분석.">Statistical genomics and bioinformatics analysis using R for data visualization, meta-analysis, and omics workflows.</div></div>
+</div>
+</section>
+<div class="divider"></div>
+<!-- SKILLS -->
+<section id="skills">
+<div class="section-eyebrow" data-en="05 · Skills" data-ko="05 · 기술">05 · Skills</div>
+<h2 class="section-title fade" data-en="Competency Profile" data-ko="역량 프로필">Competency Profile</h2>
+<p class="section-sub fade" data-en="Focused research, digital, and language skills presented with clear competency levels." data-ko="연구, 디지털 및 언어 역량을 명확한 수준으로 정리했습니다.">Focused research, digital, and language skills presented with clear competency levels.</p>
+<div class="skills-dashboard fade">
+<div class="skill-group skill-card">
+<div class="sg-title" data-en="Research Skills" data-ko="연구 역량">Research Skills</div>
+<div class="skill-row"><span class="sk-name" data-en="Western Blot / ELISA" data-ko="웨스턴 블롯 / ELISA">Western Blot / ELISA</span><div class="sk-track"><div class="sk-bar" data-w="98" style="width:98%"></div></div><span class="sk-pct">98%</span></div>
+<div class="skill-row"><span class="sk-name" data-en="PCR / qPCR / dPCR" data-ko="PCR / qPCR / dPCR">PCR / qPCR / dPCR</span><div class="sk-track"><div class="sk-bar" data-w="97" style="width:97%"></div></div><span class="sk-pct">97%</span></div>
+<div class="skill-row"><span class="sk-name" data-en="Mass Spectrometry" data-ko="질량분석">Mass Spectrometry</span><div class="sk-track"><div class="sk-bar" data-w="97" style="width:97%"></div></div><span class="sk-pct">97%</span></div>
+<div class="skill-row"><span class="sk-name" data-en="Stem Cell Analysis" data-ko="줄기세포 분석">Stem Cell Analysis</span><div class="sk-track"><div class="sk-bar" data-w="95" style="width:95%"></div></div><span class="sk-pct">95%</span></div>
+<div class="skill-row"><span class="sk-name" data-en="Flow Cytometry / FACS" data-ko="유세포 분석 / FACS">Flow Cytometry / FACS</span><div class="sk-track"><div class="sk-bar" data-w="95" style="width:95%"></div></div><span class="sk-pct">95%</span></div>
+<div class="skill-row"><span class="sk-name" data-en="CRISPR Gene Editing" data-ko="CRISPR 유전자 편집">CRISPR Gene Editing</span><div class="sk-track"><div class="sk-bar" data-w="93" style="width:93%"></div></div><span class="sk-pct">93%</span></div>
+<div class="skill-row"><span class="sk-name" data-en="Single-Cell RNA-seq" data-ko="단일세포 RNA-seq">Single-Cell RNA-seq</span><div class="sk-track"><div class="sk-bar" data-w="92" style="width:92%"></div></div><span class="sk-pct">92%</span></div>
+</div>
+<div class="skill-group skill-card">
+<div class="sg-title" data-en="Digital Skills" data-ko="디지털 역량">Digital Skills</div>
+<div class="skill-row"><span class="sk-name" data-en="SPSS" data-ko="SPSS">SPSS</span><div class="sk-track"><div class="sk-bar" data-w="99" style="width:99%"></div></div><span class="sk-pct">99%</span></div>
+<div class="skill-row"><span class="sk-name" data-en="R &amp; RStudio" data-ko="R &amp; RStudio">R &amp; RStudio</span><div class="sk-track"><div class="sk-bar" data-w="99" style="width:99%"></div></div><span class="sk-pct">99%</span></div>
+<div class="skill-row"><span class="sk-name" data-en="YouTube Content Creator" data-ko="유튜브 콘텐츠 크리에이터">YouTube Content Creator</span><div class="sk-track"><div class="sk-bar" data-w="99" style="width:99%"></div></div><span class="sk-pct">99%</span></div>
+<div class="skill-row"><span class="sk-name" data-en="GraphPad Prism" data-ko="GraphPad Prism">GraphPad Prism</span><div class="sk-track"><div class="sk-bar" data-w="98" style="width:98%"></div></div><span class="sk-pct">98%</span></div>
+<div class="skill-row"><span class="sk-name" data-en="BioRender" data-ko="BioRender">BioRender</span><div class="sk-track"><div class="sk-bar" data-w="98" style="width:98%"></div></div><span class="sk-pct">98%</span></div>
+<div class="skill-row"><span class="sk-name" data-en="Scientific Writing" data-ko="과학 글쓰기">Scientific Writing</span><div class="sk-track"><div class="sk-bar" data-w="97" style="width:97%"></div></div><span class="sk-pct">97%</span></div>
+<div class="skill-row"><span class="sk-name" data-en="NIH &amp; Molecular Software" data-ko="NIH &amp; 분자 소프트웨어">NIH &amp; Molecular Software</span><div class="sk-track"><div class="sk-bar" data-w="97" style="width:97%"></div></div><span class="sk-pct">97%</span></div>
+<div class="skill-row"><span class="sk-name" data-en="BLAST" data-ko="BLAST">BLAST</span><div class="sk-track"><div class="sk-bar" data-w="95" style="width:95%"></div></div><span class="sk-pct">95%</span></div>
+<div class="skill-row"><span class="sk-name" data-en="SnapGene" data-ko="SnapGene">SnapGene</span><div class="sk-track"><div class="sk-bar" data-w="93" style="width:93%"></div></div><span class="sk-pct">93%</span></div>
+</div>
+<div class="skill-group skill-card language-card">
+<div class="sg-title" data-en="Languages" data-ko="언어">Languages</div>
+<div class="skill-row"><span class="sk-name" data-en="English" data-ko="영어">English</span><div class="sk-track"><div class="sk-bar" data-w="97" style="width:97%"></div></div><span class="sk-pct">97%</span></div>
+<div class="skill-row"><span class="sk-name" data-en="Korean" data-ko="한국어">Korean</span><div class="sk-track"><div class="sk-bar" data-w="95" style="width:95%"></div></div><span class="sk-pct">95%</span></div>
+<div class="skill-row"><span class="sk-name" data-en="Urdu" data-ko="우르두어">Urdu</span><div class="sk-track"><div class="sk-bar" data-w="95" style="width:95%"></div></div><span class="sk-pct">95%</span></div>
+</div>
+
+</div></section>
+<div class="divider"></div>
+<!-- ══════════════ AWARDS ══════════════ -->
+<section id="awards">
+<div class="section-eyebrow" data-en="07 · Honours &amp; Awards" data-ko="07 · 수상 및 장학금">07 · Honours &amp; Awards</div>
+<h2 class="section-title fade" data-en="Recognition" data-ko="명예 및 수상">Recognition</h2>
+<div class="gcol fade">
+<div class="sch-awards-card scholarship-awards-3d">
+<div class="sch-awards-head">
+<div class="sch-awards-icon">🏅</div>
+<div>
+<div class="sch-awards-title">International Research Scholarships</div>
+<div class="sch-awards-sub">Five competitive international research scholarships secured in 2025.</div>
+</div>
+<span class="sch-awards-count">5 Won</span>
+</div>
+<div class="sch-awards-row sch-awards-row-3d">
+<div class="sch-award-mini"><span class="mini-icon">🎓</span><span class="mini-flag">🇰🇷</span><span class="mini-name">GKS Korea</span><span class="mini-year">2025</span></div>
+<div class="sch-award-mini"><span class="mini-icon">🎓</span><span class="mini-flag">🇷🇺</span><span class="mini-name">Open Door Russian</span><span class="mini-year">2025</span></div>
+<div class="sch-award-mini"><span class="mini-icon">🎓</span><span class="mini-flag">🇨🇳</span><span class="mini-name">CSC China</span><span class="mini-year">2025</span></div>
+<div class="sch-award-mini"><span class="mini-icon">🎓</span><span class="mini-flag">🇹🇭</span><span class="mini-name">AIT Thailand</span><span class="mini-year">2025</span></div>
+<div class="sch-award-mini"><span class="mini-icon">🎓</span><span class="mini-flag">🇰🇷</span><span class="mini-name">PFS Korea</span><span class="mini-year">2025</span></div>
+</div>
+</div>
+
+<div class="award-card">
+<div class="award-icon">🥇</div>
+<div class="award-body">
+<h3 data-en="Gold Medalist - PJSC 2020" data-ko="금메달리스트 - PJSC 2020">Gold Medalist - PJSC 2020</h3>
+<p data-en="Awarded Gold Medal by the Pakistan Junior Science Council in recognition of outstanding academic performance at entry-level examination - 2020." data-ko="2020년 입학 시험에서 뛰어난 학업 성적을 인정받아 파키스탄 주니어 과학 위원회로부터 금메달을 수상.">Awarded Gold Medal by the Pakistan Junior Science Council in recognition of outstanding academic performance at entry-level examination - 2020.</p>
+</div>
+</div>
+<div class="award-card">
+<div class="award-icon">💻</div>
+<div class="award-body">
+<h3 data-en="Prime Minister Youth Laptop Scheme 2023" data-ko="국무총리 청년 노트북 지원 제도 2023">Prime Minister Youth Laptop Scheme 2023</h3>
+<p data-en="Selected as a recipient of the Government of Pakistan's PM Laptop Scheme under Government College University Faisalabad, awarded to high-achieving university students - 2023." data-ko="파이살라바드 정부대학교 소속으로 파키스탄 정부 국무총리 노트북 지원 제도 수혜자로 선정. 우수 대학생에게 수여 - 2023.">Selected as a recipient of the Government of Pakistan's PM Laptop Scheme under Government College University Faisalabad, awarded to high-achieving university students - 2023.</p>
+</div>
+</div>
+<div class="award-card">
+<div class="award-icon">🎓</div>
+<div class="award-body">
+<h3 data-en="Talent Bachelor Scholarship - Interloop Limited 2020-2024" data-ko="인재 학사 장학금 - Interloop Limited 2020-2024">Talent Bachelor Scholarship - Interloop Limited 2020-2024</h3>
+<p data-en="Full four-year merit-based scholarship awarded by Interloop Limited to exceptionally talented undergraduate students, maintained throughout the entire Bachelor's degree programme." data-ko="Interloop Limited이 특출한 재능을 가진 학부생에게 수여하는 4년 전액 성적 우수 장학금으로, 학사 학위 과정 전반에 걸쳐 유지.">Full four-year merit-based scholarship awarded by Interloop Limited to exceptionally talented undergraduate students, maintained throughout the entire Bachelor's degree programme.</p>
+</div>
+</div>
+</div>
+</section>
+<div class="divider"></div>
+<!-- ══════════════ CONFERENCES ══════════════ -->
+<section id="conferences">
+<div class="section-eyebrow" data-en="08 · Conferences &amp; Seminars" data-ko="08 · 학회 및 세미나">08 · Conferences &amp; Seminars</div>
+<h2 class="section-title fade" data-en="Continuing Education" data-ko="지속 교육">Continuing Education</h2>
+<p class="section-sub fade" data-en="WHO programmes, international seminars, and specialized workshops in biomedical sciences." data-ko="WHO 프로그램, 국제 세미나 및 생의학 분야 전문 워크숍.">WHO programmes, international seminars, and specialized workshops in biomedical sciences.</p>
+<div class="card fade" style="padding:.4rem 1rem;border-radius:var(--r);">
+<div class="conf-grid">
+<div class="conf-item"><div class="conf-icon">🌍</div><div class="conf-body"><h4 data-en="NGS for SARS-CoV-2 and Influenza" data-ko="SARS-CoV-2 및 인플루엔자를 위한 NGS">NGS for SARS-CoV-2 and Influenza</h4><p data-en="World Health Organization" data-ko="세계보건기구">World Health Organization</p></div></div>
+<div class="conf-item"><div class="conf-icon">🧪</div><div class="conf-body"><h4 data-en="SNIBE Diagnostics" data-ko="SNIBE 진단">SNIBE Diagnostics</h4><p data-en="Pakistan Society of Chemical Pathologists" data-ko="파키스탄 화학병리학회">Pakistan Society of Chemical Pathologists</p></div></div>
+<div class="conf-item"><div class="conf-icon">🔬</div><div class="conf-body"><h4 data-en="Blood Film Morphology - A Practical Guide" data-ko="혈액 도말 형태학 - 실습 가이드">Blood Film Morphology - A Practical Guide</h4><p data-en="The University of Western Australia" data-ko="서호주대학교">The University of Western Australia</p></div></div>
+<div class="conf-item"><div class="conf-icon">💉</div><div class="conf-body"><h4 data-en="Awareness Seminar on Diabetes, Prevention and Management" data-ko="당뇨병 예방 및 관리 인식 세미나">Awareness Seminar on Diabetes, Prevention and Management</h4><p data-en="Department of Public Health - GCUF" data-ko="공중보건학과 - GCUF">Department of Public Health - GCUF</p></div></div>
+<div class="conf-item"><div class="conf-icon">🏥</div><div class="conf-body"><h4 data-en="Catheter-Associated Urinary Tract Infections" data-ko="카테터 관련 요로감염">Catheter-Associated Urinary Tract Infections</h4><p data-en="World Health Organization" data-ko="세계보건기구">World Health Organization</p></div></div>
+<div class="conf-item"><div class="conf-icon">🩸</div><div class="conf-body"><h4 data-en="Thalassemia Awareness Seminar - World Thalassemia Day 2023" data-ko="지중해 빈혈 인식 세미나 - 세계 지중해 빈혈의 날 2023">Thalassemia Awareness Seminar - World Thalassemia Day 2023</h4><p data-en="GCUF" data-ko="GCUF">GCUF</p></div></div>
+<div class="conf-item"><div class="conf-icon">🦠</div><div class="conf-body"><h4 data-en="Clinical Management of Patients with COVID-19" data-ko="COVID-19 환자의 임상 관리">Clinical Management of Patients with COVID-19</h4><p data-en="HE Programme - Initial approach to the acutely ill patient" data-ko="HE 프로그램 - 급성 환자에 대한 초기 접근">HE Programme - Initial approach to the acutely ill patient</p></div></div>
+<div class="conf-item"><div class="conf-icon">🧠</div><div class="conf-body"><h4 data-en="Tuberculosis and Mental Health" data-ko="결핵과 정신 건강">Tuberculosis and Mental Health</h4><p data-en="Health Emergence Programme - WHO" data-ko="보건 비상 프로그램 - WHO">Health Emergence Programme - WHO</p></div></div>
+<div class="conf-item"><div class="conf-icon">🤖</div><div class="conf-body"><h4 data-en="Biomedical Ethics and Governance for Health" data-ko="보건을 위한 생명의학 윤리 및 거버넌스">Biomedical Ethics and Governance for Health</h4><p data-en="International HE Programme - WHO" data-ko="국제 HE 프로그램 - WHO">International HE Programme - WHO</p></div></div>
+<div class="conf-item"><div class="conf-icon">🩸</div><div class="conf-body"><h4 data-en="Thalassemia Awareness Seminar" data-ko="지중해 빈혈 인식 세미나">Thalassemia Awareness Seminar</h4><p data-en="College of Allied Health Professionals - GCUF" data-ko="보건 관련 전문대학 - GCUF">College of Allied Health Professionals - GCUF</p></div></div>
+<div class="conf-item"><div class="conf-icon">🐛</div><div class="conf-body"><h4 data-en="Control and Manage Taenia Solium (Cysticercosis)" data-ko="갈고리촌충(낭미충증) 관리">Control and Manage Taenia Solium (Cysticercosis)</h4><p data-en="World Health Organization" data-ko="세계보건기구">World Health Organization</p></div></div>
+<div class="conf-item"><div class="conf-icon">💊</div><div class="conf-body"><h4 data-en="Drug-Resistant Tuberculosis" data-ko="약제내성 결핵">Drug-Resistant Tuberculosis</h4><p data-en="International Health Emergence Programme" data-ko="국제 보건 비상 프로그램">International Health Emergence Programme</p></div></div>
+<div class="conf-item"><div class="conf-icon">🤰</div><div class="conf-body"><h4 data-en="Oral Health Care of Pregnant Women and Newborns" data-ko="임산부 및 신생아 구강 건강 관리">Oral Health Care of Pregnant Women and Newborns</h4><p data-en="World Health Organization" data-ko="세계보건기구">World Health Organization</p></div></div>
+<div class="conf-item" style="border-bottom:none;"><div class="conf-icon">🌡️</div><div class="conf-body"><h4 data-en="Training to Deal with Neglected Tropical Diseases (NTDs)" data-ko="소외열대질환(NTDs) 대처 교육">Training to Deal with Neglected Tropical Diseases (NTDs)</h4><p data-en="Health Emergence Programme" data-ko="보건 비상 프로그램">Health Emergence Programme</p></div></div>
+</div>
+</div>
+</section>
+<div class="divider"></div>
+<!-- ══════════════ LEADERSHIP ══════════════ -->
+<section id="leadership">
+<div class="section-eyebrow" data-en="09 · Leadership &amp; Volunteering" data-ko="09 · 리더십 및 봉사">09 · Leadership &amp; Volunteering</div>
+<h2 class="section-title fade" data-en="Social Impact" data-ko="사회적 영향">Social Impact</h2>
+<p class="section-sub fade" data-en="Driving public health awareness and community service beyond the laboratory." data-ko="연구실 밖에서도 공중보건 인식 향상과 지역사회 봉사를 이끌고 있습니다.">Driving public health awareness and community service beyond the laboratory.</p>
+<div class="g2 fade compact-leadership">
+<div class="lead-card"><div class="lead-icon">🩸</div><div class="lead-title" data-en="Vice President - Blood Donation Society" data-ko="부회장 - 헌혈 동아리">Vice President - Blood Donation Society</div><div class="lead-org" data-en="GCUF · 4 Years" data-ko="GCUF · 4년">GCUF · 4 Years</div><div class="lead-desc" data-en="Served as Vice President of the Blood Donation Society at Government College University Faisalabad for four consecutive years, leading campaigns, organizing events, and mobilizing student volunteers for blood donation drives." data-ko="파이살라바드 정부대학교 헌혈 동아리 부회장으로 4년 연속 활동하며 캠페인을 이끌고 행사를 조직하며 헌혈 활동에 학생 자원봉사자를 동원.">Served as Vice President of the Blood Donation Society at Government College University Faisalabad for four consecutive years, leading campaigns, organizing events, and mobilizing student volunteers for blood donation drives.</div></div>
+<div class="lead-card"><div class="lead-icon">🏕️</div><div class="lead-title" data-en="Campaign Organizer" data-ko="캠페인 주최자">Campaign Organizer</div><div class="lead-org" data-en="SUNDAS Foundation Blood Bank &amp; Blood Transfusion Services" data-ko="SUNDAS 재단 혈액원 및 수혈 서비스">SUNDAS Foundation Blood Bank &amp; Blood Transfusion Services</div><div class="lead-desc" data-en="Organized and coordinated blood collection campaigns in collaboration with SUNDAS Foundation, one of Pakistan's leading voluntary blood service organizations." data-ko="파키스탄의 주요 자원봉사 혈액 서비스 기관인 SUNDAS 재단과 협력하여 헌혈 캠페인을 기획하고 조율.">Organized and coordinated blood collection campaigns in collaboration with SUNDAS Foundation, one of Pakistan's leading voluntary blood service organizations.</div></div>
+<div class="lead-card"><div class="lead-icon">❤️</div><div class="lead-title" data-en="Volunteer" data-ko="자원봉사자">Volunteer</div><div class="lead-org" data-en="Sundas Foundation Faisalabad" data-ko="선다스 재단 파이살라바드">Sundas Foundation Faisalabad</div><div class="lead-desc" data-en="Active volunteer supporting blood donation awareness, thalassemia screening, and community health outreach programmes in Faisalabad." data-ko="파이살라바드에서 헌혈 인식 제고, 지중해 빈혈 검진 및 지역사회 보건 아웃리치 프로그램을 지원하는 활동적인 자원봉사자.">Active volunteer supporting blood donation awareness, thalassemia screening, and community health outreach programmes in Faisalabad.</div></div>
+<div class="lead-card"><div class="lead-icon">🏫</div><div class="lead-title" data-en="Blood Camp Organizer" data-ko="헌혈 캠프 주최자">Blood Camp Organizer</div><div class="lead-org" data-en="Superior University Faisalabad, Pakistan" data-ko="수페리어 대학교 파이살라바드, 파키스탄">Superior University Faisalabad, Pakistan</div><div class="lead-desc" data-en="Organized and managed blood donation camps at Superior University, coordinating donors, medical staff, and logistic arrangements for campus-level health initiatives." data-ko="수페리어 대학교에서 헌혈 캠프를 기획 및 운영하며 기부자, 의료진 및 물류를 조율하여 캠퍼스 수준의 보건 활동 진행.">Organized and managed blood donation camps at Superior University, coordinating donors, medical staff, and logistic arrangements for campus-level health initiatives.</div></div>
+<div class="lead-card"><div class="lead-icon">🌱</div><div class="lead-title" data-en="Leadership Development Participant" data-ko="리더십 개발 프로그램 참가자">Leadership Development Participant</div><div class="lead-org" data-en="Khursheed-e-Sahara Welfare Society" data-ko="쿠르시드에사하라 복지 협회">Khursheed-e-Sahara Welfare Society</div><div class="lead-desc" data-en="Engaged in skills, personality, and leadership development programmes organized by Khursheed-e-Sahara Welfare Society to foster community-oriented leadership." data-ko="지역사회 지향적 리더십 양성을 위해 쿠르시드에사하라 복지 협회가 주관하는 역량, 인성 및 리더십 개발 프로그램에 참여.">Engaged in skills, personality, and leadership development programmes organized by Khursheed-e-Sahara Welfare Society to foster community-oriented leadership.</div></div>
+<div class="lead-card"><div class="lead-icon">🕊️</div><div class="lead-title" data-en="Volunteer" data-ko="자원봉사자">Volunteer</div><div class="lead-org" data-en="Qalb Welfare Foundation of Pakistan" data-ko="파키스탄 칼브 복지 재단">Qalb Welfare Foundation of Pakistan</div><div class="lead-desc" data-en="Active member and volunteer at Qalb Welfare Foundation, contributing to charitable health and social welfare initiatives across Pakistan." data-ko="칼브 복지 재단의 적극적인 회원 및 자원봉사자로서 파키스탄 전역의 자선 보건 및 사회복지 활동에 기여.">Active member and volunteer at Qalb Welfare Foundation, contributing to charitable health and social welfare initiatives across Pakistan.</div></div>
+</div>
+</section>
+<div class="divider"></div>
+<section id="youtube">
+<div class="section-eyebrow" data-en="10 · Academic Connect" data-ko="10 · 학술 연결">10 · Academic Connect</div>
+<h2 class="section-title fade">Academic Connect</h2>
+<p class="section-sub fade">Research profiles, publications, academic network, and science communication links in one compact row.</p>
+<div class="profile-grid academic-connect-line fade">
+<div class="profile-card"><div class="profile-icon">💼</div><div class="profile-name">LinkedIn</div><div class="profile-sub">Professional Network</div><a class="profile-btn" href="https://www.linkedin.com/in/muhammadharisbaig/" target="_blank">View LinkedIn</a></div>
+<div class="profile-card"><div class="profile-icon">▶</div><div class="profile-name">YouTube</div><div class="profile-sub">Medical Lab Tactics</div><a class="profile-btn" href="https://www.youtube.com/@medicallabtactics" target="_blank">Subscribe</a></div>
+<div class="profile-card"><div class="profile-icon">🎓</div><div class="profile-name">Google Scholar</div><div class="profile-sub">Citations &amp; Publications</div><a class="profile-btn" href="https://scholar.google.com/citations?user=H319JIsAAAAJ&amp;hl=en" target="_blank">View Scholar</a></div>
+<div class="profile-card"><div class="profile-icon">📚</div><div class="profile-name">Academia.edu</div><div class="profile-sub">Academic Papers</div><a class="profile-btn" href="https://schpath.academia.edu/MuhammadHarisBaig" target="_blank">Read More</a></div>
+<div class="profile-card"><div class="profile-icon">🌐</div><div class="profile-name">New LB World</div><div class="profile-sub">Biomedical News Hub</div><a class="profile-btn" href="https://new-lb-world.jimdosite.com/news/" target="_blank">Open Website</a></div>
+<div class="profile-card"><div class="profile-icon">🔬</div><div class="profile-name">ResearchGate</div><div class="profile-sub">Research Network</div><a class="profile-btn" href="https://www.researchgate.net/profile/Muhammad-Haris-Baig?ev=hdr_xprf" target="_blank">Visit Profile</a></div>
+</div>
+</section>
+<div class="divider"></div>
+<!-- ══════════════ CONTACT ══════════════ -->
+<section id="contact">
+<div class="section-eyebrow" data-en="11 · Contact" data-ko="11 · 연락처">11 · Contact</div>
+<h2 class="section-title fade" data-en="Get In Touch" data-ko="연락하기">Get In Touch</h2>
+<p class="section-sub fade" data-en="Open to research collaborations, editorial invitations, academic opportunities, and scientific discussions." data-ko="연구 협력, 편집 초대, 학술 기회 및 과학적 토론을 환영합니다.">Open to research collaborations, editorial invitations, academic opportunities, and scientific discussions.</p>
+<div class="contact-grid fade">
+<div>
+<div class="ci-item"><div class="ci-icon">📧</div><div><h4 data-en="Primary Email" data-ko="주요 이메일">Primary Email</h4><a href="mailto:mhb8677@gmail.com">mhb8677@gmail.com</a></div></div>
+<div class="ci-item"><div class="ci-icon">📧</div><div><h4 data-en="Academic Email" data-ko="학교 이메일">Academic Email</h4><a href="mailto:mharisbaig.202001707@gcuf.edu.pk">mharisbaig.202001707@gcuf.edu.pk</a></div></div>
+<div class="ci-item"><div class="ci-icon">📞</div><div><h4 data-en="Phone (South Korea)" data-ko="전화 (대한민국)">Phone (South Korea)</h4><p>(+82) 1074881154</p></div></div>
+<div class="ci-item"><div class="ci-icon">📍</div><div><h4 data-en="Location" data-ko="현재 위치">Location</h4><p data-en="Cheonan 31151, South Korea" data-ko="대한민국 31151 천안">Cheonan 31151, South Korea</p></div></div>
+<div class="ci-item"><div class="ci-icon">🆔</div><div><h4>ORCID</h4><a href="https://orcid.org/0009-0008-2151-8163" target="_blank">0009-0008-2151-8163</a></div></div>
+<div class="social-row">
+<a class="soc" href="https://www.linkedin.com/in/muhammadharisbaig/" target="_blank" title="LinkedIn">in</a>
+<a class="soc" href="https://www.youtube.com/@medicallabtactics" target="_blank" title="YouTube">▶</a>
+<a class="soc" href="https://orcid.org/0009-0008-2151-8163" target="_blank" title="ORCID">🆔</a>
+<a class="soc" href="https://new-lb-world.jimdosite.com/" target="_blank" title="Website">🌐</a>
+<a class="soc" href="https://www.facebook.com/haris.baig.1800" target="_blank" title="Facebook">f</a>
+</div>
+</div>
+<div>
+<div class="card" style="padding:1.75rem;">
+<h3 data-en="Send a Message" data-ko="메시지 보내기" style="font-family:var(--font-d);font-weight:600;margin-bottom:1.35rem;font-size:1.05rem;">Send a Message</h3>
+<div class="contact-form">
+<div class="form-row">
+<div class="ff"><label data-en="First Name" data-ko="이름">First Name</label><input id="input-firstname" placeholder="Your first name" type="text"/></div>
+<div class="ff"><label data-en="Last Name" data-ko="성">Last Name</label><input id="input-lastname" placeholder="Your last name" type="text"/></div>
+</div>
+<div class="ff"><label data-en="Email Address" data-ko="이메일 주소">Email Address</label><input id="input-email" placeholder="your@email.com" type="email"/></div>
+<div class="ff"><label data-en="Subject" data-ko="제목">Subject</label><input id="input-subject" placeholder="Research collaboration, publication inquiry…" type="text"/></div>
+<div class="ff"><label data-en="Message" data-ko="메시지">Message</label><textarea id="input-message" placeholder="Write your message here…" rows="5"></textarea></div>
+<button class="btn-p" onclick="submitForm()" style="width:100%;justify-content:center;"><span data-en="✉ Send Message" data-ko="✉ 메시지 전송">✉ Send Message</span></button>
+<div data-en="✓ Message received. Haris will respond shortly." data-ko="✓ 메시지가 수신되었습니다. Haris가 곧 답변드릴 것입니다." id="form-status" style="font-size:.82rem;color:var(--accent);text-align:center;display:none;">✓ Message received. Haris will respond shortly.</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- ══════════════ FOOTER ══════════════ -->
+<footer>
+<div class="footer-inner">
+<div class="footer-brand">
+<a class="nav-brand" data-en="Biomedical Researcher" data-ko="생의학 연구원" href="#hero">Biomedical Researcher</a>
+<p data-en="Muhammad Haris Baig&lt;br&gt;Biomedical Researcher &amp; Stem Cell Scientist&lt;br&gt;Kwon's Stem Cell Lab, Soonchunhyang University&lt;br&gt;Cheonan, South Korea" data-ko="무함마드 하리스 바이그&lt;br&gt;생의학 연구원 및 줄기세포 과학자&lt;br&gt;권 줄기세포 연구실, 순천향대학교&lt;br&gt;대한민국 천안">Muhammad Haris Baig<br/>Biomedical Researcher &amp; Stem Cell Scientist<br/>Kwon's Stem Cell Lab, Soonchunhyang University<br/>Cheonan, South Korea</p>
+<div class="social-row">
+<a class="soc" href="https://www.linkedin.com/in/muhammadharisbaig/" target="_blank" title="LinkedIn">in</a>
+<a class="soc" href="https://www.youtube.com/@medicallabtactics" target="_blank" title="YouTube">▶</a>
+<a class="soc" href="https://orcid.org/0009-0008-2151-8163" target="_blank" title="ORCID">🆔</a>
+<a class="soc" href="https://new-lb-world.jimdosite.com/" target="_blank" title="Website">🌐</a>
+</div>
+</div>
+<div class="footer-col">
+<h5 data-en="Navigation" data-ko="내비게이션">Navigation</h5>
+<a data-en="About" data-ko="소개" href="#about">About</a>
+<a data-en="Education" data-ko="학력" href="#education">Education</a>
+<a data-en="Experience" data-ko="경력" href="#experience">Experience</a>
+<a data-en="Expertise" data-ko="전문성" href="#expertise">Expertise</a>
+<a data-en="Skills" data-ko="기술" href="#skills">Skills</a>
+</div>
+<div class="footer-col">
+<h5 data-en="Research" data-ko="연구">Research</h5>
+<a data-en="Publications" data-ko="논문" href="#publications">Publications</a>
+<a data-en="Awards" data-ko="수상" href="#awards">Awards</a>
+<a data-en="Conferences" data-ko="학회" href="#conferences">Conferences</a>
+<a data-en="Leadership" data-ko="리더십" href="#leadership">Leadership</a>
+<a data-en="YouTube" data-ko="유튜브" href="#youtube">YouTube</a>
+</div>
+<div class="footer-col">
+<h5 data-en="Profiles" data-ko="프로필">Profiles</h5>
+<a href="https://orcid.org/0009-0008-2151-8163" target="_blank">ORCID</a>
+<a href="https://www.linkedin.com/in/muhammadharisbaig/" target="_blank">LinkedIn</a>
+<a href="https://www.youtube.com/@medicallabtactics" target="_blank">YouTube</a>
+<a href="https://new-lb-world.jimdosite.com/" target="_blank">Website</a>
+<a href="http://www.thekwonlab.org/" target="_blank">Kwon Lab</a>
+</div>
+</div>
+</footer>
+<button aria-label="Back to top" id="btt" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+<!-- ══════════════ SCRIPTS ══════════════ -->
+<script>
+/* ── CUSTOM CURSOR ── */
+const cur = document.getElementById('cur');
+const curR = document.getElementById('cur-r');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{ mx=e.clientX; my=e.clientY; cur.style.left=mx+'px'; cur.style.top=my+'px'; });
+(function animR(){ rx+=(mx-rx)*.14; ry+=(my-ry)*.14; curR.style.left=rx+'px'; curR.style.top=ry+'px'; requestAnimationFrame(animR); })();
+document.querySelectorAll('a,button,.card,.pub-card,.award-card,.lead-card,.exp-card').forEach(el=>{
+  el.addEventListener('mouseenter',()=>{ curR.style.width='48px'; curR.style.height='48px'; });
+  el.addEventListener('mouseleave',()=>{ curR.style.width='32px'; curR.style.height='32px'; });
+});
+/* hide on mobile */
+if(window.matchMedia('(pointer:coarse)').matches){ cur.style.display='none'; curR.style.display='none'; document.body.style.cursor='auto'; }
+
+/* ── HEX CANVAS (signature) ── */
+(function initHex(){
+  const c = document.getElementById('hex-canvas');
+  const ctx = c.getContext('2d');
+  let W,H,hexes=[];
+  function resize(){ W=c.width=window.innerWidth; H=c.height=window.innerHeight; buildHexes(); }
+  function buildHexes(){
+    hexes=[];
+    const size=36, w=size*2, h=Math.sqrt(3)*size;
+    for(let row=0;row<Math.ceil(H/h)+2;row++){
+      for(let col=0;col<Math.ceil(W/w)+2;col++){
+        const x=col*w*0.75-size+(row%2?w*0.375:0);
+        const y=row*h-h;
+        hexes.push({x,y,size,alpha:Math.random()*0.4+0.05,phase:Math.random()*Math.PI*2,speed:Math.random()*0.003+0.001});
+      }
+    }
+  }
+  function drawHex(x,y,size,alpha){
+    ctx.beginPath();
+    for(let i=0;i<6;i++){
+      const a=Math.PI/3*i-Math.PI/6;
+      ctx[i?'lineTo':'moveTo'](x+size*Math.cos(a),y+size*Math.sin(a));
+    }
+    ctx.closePath();
+    ctx.strokeStyle=`rgba(0,212,160,${alpha})`;
+    ctx.lineWidth=0.6;
+    ctx.stroke();
+  }
+  let t=0;
+  function draw(){
+    ctx.clearRect(0,0,W,H);
+    hexes.forEach(h=>{ h.phase+=h.speed; const a=h.alpha*(0.5+0.5*Math.sin(h.phase)); drawHex(h.x,h.y,h.size,a); });
+    t++;
+    requestAnimationFrame(draw);
+  }
+  resize();
+  window.addEventListener('resize',resize);
+  draw();
+})();
+
+/* ── LOADER ── */
+let pct=0;
+const loadPct=document.getElementById('load-pct');
+const loader=document.getElementById('loader');
+const iv=setInterval(()=>{ pct+=Math.random()*20; if(pct>=100){pct=100;clearInterval(iv);setTimeout(()=>loader.classList.add('hide'),300);} loadPct.textContent=Math.floor(pct)+'%'; },90);
+
+/* ── SCROLL ── */
+const scrollProg=document.getElementById('scroll-prog');
+const btt=document.getElementById('btt');
+function onScroll(){
+  const s=document.documentElement.scrollTop;
+  const h=document.documentElement.scrollHeight-window.innerHeight;
+  scrollProg.style.width=(s/h*100)+'%';
+  btt.classList.toggle('show',s>400);
+  triggerAnims();
+}
+window.addEventListener('scroll',onScroll,{passive:true});
+
+/* ── ANIMATIONS ── */
+function triggerAnims(){
+  document.querySelectorAll('.fade,.fade-l,.section-eyebrow,.tl-item,.skill-row').forEach(el=>{
+    if(el.getBoundingClientRect().top<window.innerHeight-70){
+      el.classList.add('vis');
+      el.querySelectorAll('.sk-bar[data-w]').forEach(b=>{ b.style.width=b.dataset.w+'%'; });
+    }
+  });
+}
+setTimeout(triggerAnims,1300);
+
+/* ── TYPING ── */
+let roles=['Stem Cell Researcher','Biomedical Scientist','Medical Lab Technologist','Scientific Author','Research Assistant','Science Educator','YouTube Creator'];
+const typedRolesKO=['줄기세포 연구원','생의학 과학자','의료검사기사','과학 저자','연구 조교','과학 교육자','유튜브 크리에이터'];
+let ri=0,ci=0,del=false;
+const typedEl=document.getElementById('typed-text');
+function type(){
+  const cur=roles[ri];
+  if(!del){ typedEl.textContent=cur.slice(0,ci+1); ci++; if(ci===cur.length){del=true;setTimeout(type,1800);return;} }
+  else { typedEl.textContent=cur.slice(0,ci-1); ci--; if(ci===0){del=false;ri=(ri+1)%roles.length;} }
+  setTimeout(type,del?52:78);
+}
+setTimeout(type,1500);
+
+/* ── COUNTERS ── */
+function animCounters(){
+  document.querySelectorAll('.stat-n[data-count]').forEach(el=>{
+    const target=parseInt(el.dataset.count); let c=0;
+    const step=()=>{ c+=Math.ceil(target/40); if(c>=target){el.textContent=target+'+';return;} el.textContent=c; requestAnimationFrame(step); };
+    step();
+  });
+}
+setTimeout(animCounters,1400);
+
+/* ── PUBLICATIONS FILTER ── */
+let activeTag='all';
+function filterPubs(){
+  const q=document.getElementById('pub-search').value.toLowerCase();
+  document.querySelectorAll('.pub-card').forEach(card=>{
+    const txt=card.textContent.toLowerCase();
+    const tags=card.dataset.tags||'';
+    const matchQ=!q||txt.includes(q);
+    const matchT=activeTag==='all'||tags.includes(activeTag);
+    card.classList.toggle('show',matchQ&&matchT);
+  });
+}
+function filterTag(tag,btn){
+  activeTag=tag;
+  document.querySelectorAll('.ftag').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  filterPubs();
+}
+
+/* ── NAV ── */
+function toggleMenu(){ document.getElementById('menu-drop').classList.toggle('open'); document.getElementById('menu-btn').classList.toggle('active'); }
+function closeMenu(){ document.getElementById('menu-drop').classList.remove('open'); document.getElementById('menu-btn').classList.remove('active'); }
+document.addEventListener('click',e=>{ const w=document.querySelector('.menu-wrap'); if(w&&!w.contains(e.target))closeMenu(); });
+function toggleMobile(){ document.getElementById('mobile-nav').classList.toggle('open'); }
+function closeMobile(){ document.getElementById('mobile-nav').classList.remove('open'); }
+
+/* ── THEME ── */
+let isDark=true;
+function toggleTheme(){
+  isDark=!isDark;
+  document.body.classList.toggle('light',!isDark);
+  document.getElementById('theme-icon').textContent=isDark?'☀️':'🌙';
+  document.getElementById('theme-lbl').textContent=isDark?'Light':'Dark';
+  localStorage.setItem('mhb-theme',isDark?'dark':'light');
+}
+const savedTheme=localStorage.getItem('mhb-theme');
+if(savedTheme==='light'){ isDark=false; document.body.classList.add('light'); document.getElementById('theme-icon').textContent='🌙'; document.getElementById('theme-lbl').textContent='Dark'; }
+
+/* ── LANGUAGE ── */
+const langNames={en:'English',ko:'한국어',zh:'中文',de:'Deutsch',fr:'Français',ru:'Русский',es:'Español'};
+const uiTranslations={
+  zh:{'About':'关于','Education':'教育','Experience':'经历','Expertise':'专业能力','Publications':'论文','Awards':'荣誉','Contact':'联系','Pages':'页面','Skills':'技能','Conferences':'会议','Leadership':'领导力','YouTube':'YouTube','Biomedical Researcher':'生物医学研究者','Light':'浅色','Dark':'深色','The Researcher<br>Behind the Work':'研究者<br>与工作','01 · About':'01 · 关于','02 · Education':'02 · 教育','03 · Work Experience':'03 · 工作经历','04 · Research Expertise':'04 · 研究专长','05 · Skills':'05 · 技能','06 · Publications':'06 · 论文','07 · Honours &amp; Awards':'07 · 荣誉与奖项','08 · Conferences &amp; Seminars':'08 · 会议与研讨会','09 · Leadership & Volunteering':'09 · 领导力与志愿服务','10 · YouTube Channel':'10 · YouTube频道','11 · Contact':'11 · 联系'},
+  de:{'About':'Über mich','Education':'Ausbildung','Experience':'Erfahrung','Expertise':'Expertise','Publications':'Publikationen','Awards':'Auszeichnungen','Contact':'Kontakt','Pages':'Seiten','Skills':'Kompetenzen','Conferences':'Konferenzen','Leadership':'Leadership','YouTube':'YouTube','Biomedical Researcher':'Biomedizinischer Forscher','Light':'Hell','Dark':'Dunkel','The Researcher<br>Behind the Work':'Der Forscher<br>hinter der Arbeit','01 · About':'01 · Über mich','02 · Education':'02 · Ausbildung','03 · Work Experience':'03 · Berufserfahrung','04 · Research Expertise':'04 · Forschungsexpertise','05 · Skills':'05 · Kompetenzen','06 · Publications':'06 · Publikationen','07 · Honours &amp; Awards':'07 · Ehrungen & Auszeichnungen','08 · Conferences &amp; Seminars':'08 · Konferenzen & Seminare','09 · Leadership & Volunteering':'09 · Leadership & Ehrenamt','10 · YouTube Channel':'10 · YouTube-Kanal','11 · Contact':'11 · Kontakt'},
+  fr:{'About':'À propos','Education':'Formation','Experience':'Expérience','Expertise':'Expertise','Publications':'Publications','Awards':'Distinctions','Contact':'Contact','Pages':'Pages','Skills':'Compétences','Conferences':'Conférences','Leadership':'Leadership','YouTube':'YouTube','Biomedical Researcher':'Chercheur biomédical','Light':'Clair','Dark':'Sombre','The Researcher<br>Behind the Work':'Le chercheur<br>derrière le travail','01 · About':'01 · À propos','02 · Education':'02 · Formation','03 · Work Experience':'03 · Expérience professionnelle','04 · Research Expertise':'04 · Expertise de recherche','05 · Skills':'05 · Compétences','06 · Publications':'06 · Publications','07 · Honours &amp; Awards':'07 · Distinctions & prix','08 · Conferences &amp; Seminars':'08 · Conférences & séminaires','09 · Leadership & Volunteering':'09 · Leadership & bénévolat','10 · YouTube Channel':'10 · Chaîne YouTube','11 · Contact':'11 · Contact'},
+  ru:{'About':'Обо мне','Education':'Образование','Experience':'Опыт','Expertise':'Экспертиза','Publications':'Публикации','Awards':'Награды','Contact':'Контакты','Pages':'Разделы','Skills':'Навыки','Conferences':'Конференции','Leadership':'Лидерство','YouTube':'YouTube','Biomedical Researcher':'Биомедицинский исследователь','Light':'Светлая','Dark':'Тёмная','The Researcher<br>Behind the Work':'Исследователь<br>за работой','01 · About':'01 · Обо мне','02 · Education':'02 · Образование','03 · Work Experience':'03 · Опыт работы','04 · Research Expertise':'04 · Научная экспертиза','05 · Skills':'05 · Навыки','06 · Publications':'06 · Публикации','07 · Honours &amp; Awards':'07 · Почести и награды','08 · Conferences &amp; Seminars':'08 · Конференции и семинары','09 · Leadership & Volunteering':'09 · Лидерство и волонтёрство','10 · YouTube Channel':'10 · YouTube-канал','11 · Contact':'11 · Контакты'},
+  es:{'About':'Sobre mí','Education':'Educación','Experience':'Experiencia','Expertise':'Especialización','Publications':'Publicaciones','Awards':'Premios','Contact':'Contacto','Pages':'Páginas','Skills':'Competencias','Conferences':'Conferencias','Leadership':'Liderazgo','YouTube':'YouTube','Biomedical Researcher':'Investigador biomédico','Light':'Claro','Dark':'Oscuro','The Researcher<br>Behind the Work':'El investigador<br>detrás del trabajo','01 · About':'01 · Sobre mí','02 · Education':'02 · Educación','03 · Work Experience':'03 · Experiencia laboral','04 · Research Expertise':'04 · Especialización investigadora','05 · Skills':'05 · Competencias','06 · Publications':'06 · Publicaciones','07 · Honours &amp; Awards':'07 · Honores y premios','08 · Conferences &amp; Seminars':'08 · Conferencias y seminarios','09 · Leadership & Volunteering':'09 · Liderazgo y voluntariado','10 · YouTube Channel':'10 · Canal de YouTube','11 · Contact':'11 · Contacto'}
+};
+let lang=localStorage.getItem('mhb-lang')||'en';
+function translatedFallback(en,l){return (uiTranslations[l]&&uiTranslations[l][en])?uiTranslations[l][en]:en;}
+function applyLang(l){
+  lang=l;
+  document.querySelectorAll('[data-en]').forEach(el=>{
+    const attr='data-'+l;
+    let val=el.getAttribute(attr);
+    if(!val) val = l==='ko' ? (el.getAttribute('data-ko')||el.getAttribute('data-en')) : translatedFallback(el.getAttribute('data-en'),l);
+    if(val!==undefined&&val!==null&&val!==''){
+      const hasHtml=/<[a-z]/i.test(val);
+      if(hasHtml) el.innerHTML=val; else el.textContent=val;
+    }
+  });
+  const placeholders={
+    en:{'input-firstname':'Your first name','input-lastname':'Your last name','input-email':'your@email.com','input-subject':'Research collaboration, publication inquiry…','input-message':'Write your message here…'},
+    ko:{'input-firstname':'이름을 입력하세요','input-lastname':'성을 입력하세요','input-email':'이메일@주소.com','input-subject':'연구 협력, 논문 문의…','input-message':'메시지를 입력하세요…'},
+    zh:{'input-firstname':'名字','input-lastname':'姓氏','input-email':'your@email.com','input-subject':'科研合作、论文咨询…','input-message':'请在此输入信息…'},
+    de:{'input-firstname':'Vorname','input-lastname':'Nachname','input-email':'your@email.com','input-subject':'Forschungskooperation, Publikationsanfrage…','input-message':'Nachricht hier schreiben…'},
+    fr:{'input-firstname':'Prénom','input-lastname':'Nom','input-email':'your@email.com','input-subject':'Collaboration de recherche, demande de publication…','input-message':'Écrivez votre message ici…'},
+    ru:{'input-firstname':'Имя','input-lastname':'Фамилия','input-email':'your@email.com','input-subject':'Научное сотрудничество, публикации…','input-message':'Введите сообщение здесь…'},
+    es:{'input-firstname':'Nombre','input-lastname':'Apellido','input-email':'your@email.com','input-subject':'Colaboración científica, consulta de publicación…','input-message':'Escriba su mensaje aquí…'}
+  };
+  Object.entries(placeholders[l]||placeholders.en).forEach(([id,val])=>{const el=document.getElementById(id);if(el)el.placeholder=val;});
+  const roleSets={
+    en:['Stem Cell Researcher','Biomedical Scientist','Medical Lab Technologist','Scientific Author','Research Assistant','Science Educator','YouTube Creator'],
+    ko:['줄기세포 연구원','생의학 과학자','의료검사기사','과학 저자','연구 조교','과학 교육자','유튜브 크리에이터'],
+    zh:['干细胞研究者','生物医学科学家','医学检验技师','科学作者','研究助理','科学教育者','YouTube创作者'],
+    de:['Stammzellforscher','Biomedizinischer Wissenschaftler','Medizinischer Labortechnologe','Wissenschaftsautor','Research Assistant','Wissenschaftspädagoge','YouTube Creator'],
+    fr:['Chercheur en cellules souches','Scientifique biomédical','Technologiste de laboratoire médical','Auteur scientifique','Assistant de recherche','Éducateur scientifique','Créateur YouTube'],
+    ru:['Исследователь стволовых клеток','Биомедицинский учёный','Медицинский лабораторный технолог','Научный автор','Ассистент-исследователь','Научный педагог','YouTube-автор'],
+    es:['Investigador de células madre','Científico biomédico','Tecnólogo de laboratorio médico','Autor científico','Asistente de investigación','Educador científico','Creador de YouTube']
+  };
+  roles.splice(0,roles.length,...(roleSets[l]||roleSets.en));
+  const ps=document.getElementById('pub-search'); if(ps) ps.placeholder=({en:'Search publications…',ko:'논문 검색…',zh:'搜索论文…',de:'Publikationen suchen…',fr:'Rechercher des publications…',ru:'Поиск публикаций…',es:'Buscar publicaciones…'}[l]||'Search publications…');
+  const tl=document.getElementById('theme-lbl'); if(tl) tl.textContent=isDark?translatedFallback('Light',l):translatedFallback('Dark',l);
+  const sel=document.getElementById('lang-select'); if(sel) sel.value=l;
+  document.documentElement.lang=l;
+  localStorage.setItem('mhb-lang',l);
+}
+function toggleLang(){applyLang(lang==='en'?'ko':'en');}
+setTimeout(()=>applyLang(lang),1300);
+
+/* ── FORM ── */
+function submitForm(){
+  const s=document.getElementById('form-status');
+  s.style.display='block';
+  setTimeout(()=>s.style.display='none',4000);
+}
+</script>
+</body>
+</html>
